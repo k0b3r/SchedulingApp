@@ -1,9 +1,9 @@
-package schrader.schedulingapp;
+package schrader.schedulingapp.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 
-public class HelloController {
+public class LoginFormController {
     @FXML
     private Label welcomeText;
 
