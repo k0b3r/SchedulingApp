@@ -5,26 +5,79 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox alignment="CENTER" maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" spacing="20.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="schrader.schedulingapp.controller.LoginFormController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-    </padding>
+<GridPane alignment="CENTER" maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" style="-fx-background-color: #93CAED;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="schrader.schedulingapp.controller.LoginFormController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="0.0" prefWidth="268.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="980.0" minWidth="10.0" prefWidth="756.0" />
+      <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+   </rowConstraints>
    <children>
-      <Label fx:id="locationLabel" text="Location: ">
+      <Label fx:id="locationLabel" text="Location: " textFill="#5a5a5a">
          <font>
             <Font name="Geneva" size="24.0" />
          </font>
-         <VBox.margin>
-            <Insets bottom="600.0" right="850.0" />
-         </VBox.margin>
+         <GridPane.margin>
+            <Insets bottom="650.0" left="25.0" />
+         </GridPane.margin>
       </Label>
-      <Label fx:id="usernameLabel" text="Username:">
+      <StackPane style="-fx-border-color: white; -fx-border-radius: 30; -fx-background-color: orange; -fx-background-radius: 32; -fx-border-width: 3;" GridPane.columnIndex="1">
+      <Label fx:id="usernameLabel" text="Username:" textFill="#5a5a5a" GridPane.columnIndex="1">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
-         <VBox.margin>
-            <Insets bottom="500.0" />
-         </VBox.margin>
+         <GridPane.margin>
+            <Insets bottom="200.0" left="100.0" />
+         </GridPane.margin>
+            <StackPane.margin>
+               <Insets bottom="200.0" right="300.0" />
+            </StackPane.margin>
       </Label>
+      <TextField maxHeight="25.0" maxWidth="200.0" minHeight="25.0" minWidth="200.0" GridPane.columnIndex="1">
+         <GridPane.margin>
+            <Insets bottom="200.0" left="200.0" />
+         </GridPane.margin>
+            <StackPane.margin>
+               <Insets bottom="200.0" />
+            </StackPane.margin></TextField>
+         <Label text="Password: " textFill="#5a5a5a" GridPane.columnIndex="1">
+            <font>
+               <Font name="Arial" size="18.0" />
+            </font>
+            <GridPane.margin>
+               <Insets bottom="100.0" left="185.0" />
+            </GridPane.margin>
+            <StackPane.margin>
+               <Insets bottom="100.0" right="300.0" />
+            </StackPane.margin>
+         </Label>
+         <PasswordField maxHeight="25.0" maxWidth="200.0" minHeight="25.0" minWidth="200.0" GridPane.columnIndex="1">
+            <GridPane.margin>
+               <Insets bottom="100.0" left="277.0" />
+            </GridPane.margin>
+            <StackPane.margin>
+               <Insets bottom="100.0" />
+            </StackPane.margin>
+         </PasswordField>
+         <Button mnemonicParsing="false" text="Login" textFill="#5a5a5a" GridPane.columnIndex="1">
+            <font>
+               <Font name="Arial" size="15.0" />
+            </font>
+            <GridPane.margin>
+               <Insets left="500.0" top="10.0" />
+            </GridPane.margin>
+            <StackPane.margin>
+               <Insets left="300.0" top="15.0" />
+            </StackPane.margin>
+         </Button>
+         <GridPane.margin>
+            <Insets bottom="300.0" left="100.0" right="100.0" top="200.0" />
+         </GridPane.margin>
+         <padding>
+            <Insets top="100.0" />
+         </padding>
+      </StackPane>
    </children>
-</VBox>
+</GridPane>
