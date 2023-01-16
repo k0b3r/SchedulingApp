@@ -15,12 +15,12 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Label fx:id="locationLabel" text="Location: " textFill="#5a5a5a">
+      <Label fx:id="locationLabel" text="Time Zone:" textFill="#5a5a5a">
          <font>
             <Font name="Geneva" size="24.0" />
          </font>
          <GridPane.margin>
-            <Insets bottom="650.0" left="25.0" />
+            <Insets bottom="555.0" left="25.0" />
          </GridPane.margin>
       </Label>
       <StackPane style="-fx-border-color: white; -fx-border-radius: 30; -fx-background-color: orange; -fx-background-radius: 32; -fx-border-width: 3;" GridPane.columnIndex="1">
@@ -69,7 +69,7 @@
                <Insets left="500.0" top="10.0" />
             </GridPane.margin>
             <StackPane.margin>
-               <Insets left="300.0" top="15.0" />
+               <Insets left="300.0" top="55.0" />
             </StackPane.margin>
          </Button>
          <GridPane.margin>
@@ -79,5 +79,26 @@
             <Insets top="100.0" />
          </padding>
       </StackPane>
+      <Button mnemonicParsing="false" text="Reset" textFill="#5a5a5a" GridPane.columnIndex="1">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="425.0" top="55.0" />
+         </GridPane.margin>
+      </Button>
+      <Label text="Language:" textFill="#5a5a5a">
+         <font>
+            <Font name="Geneva" size="24.0" />
+         </font>
+         <GridPane.margin>
+            <Insets bottom="650.0" left="25.0" />
+         </GridPane.margin>
+      </Label>
+      <ComboBox editable="true" maxWidth="195.0" minWidth="195.0" prefWidth="150.0">
+         <GridPane.margin>
+            <Insets bottom="650.0" left="155.0" />
+         </GridPane.margin>
+      </ComboBox>
    </children>
 </GridPane>
