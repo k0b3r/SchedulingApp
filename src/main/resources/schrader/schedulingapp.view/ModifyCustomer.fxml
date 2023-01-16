@@ -1,14 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
+<?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="schrader.schedulingapp.view.ModifyCustomer"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<GridPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: #93CAED;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="schrader.schedulingapp.controller.ModifyCustomerController">
+    <columnConstraints>
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="215.0" minWidth="10.0" prefWidth="166.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="265.0" minWidth="10.0" prefWidth="233.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="287.0" minWidth="10.0" prefWidth="201.0" />
+        <ColumnConstraints />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints maxHeight="289.0" minHeight="10.0" prefHeight="278.0" vgrow="SOMETIMES" />
+        <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <children>
+        <Label prefHeight="36.0" prefWidth="191.0" style="-fx-border-color: white; -fx-border-radius: 10; -fx-background-color: orange; -fx-background-radius: 12;" text="Modify Customer" textFill="#5a5a5a">
+            <GridPane.margin>
+                <Insets bottom="200.0" left="5.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="Geneva" size="18.0" />
+            </font>
+            <padding>
+                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </padding>
+        </Label>
+        <TextField maxHeight="22.0" maxWidth="150.0" minHeight="22.0" minWidth="150.0" promptText="Name" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets bottom="60.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </TextField>
+        <TextField maxHeight="22.0" maxWidth="150.0" minHeight="22.0" minWidth="150.0" promptText="Phone Number" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets />
+            </GridPane.margin>
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </TextField>
+        <TextField maxHeight="22.0" maxWidth="225.0" minHeight="22.0" minWidth="225.0" promptText="Street Address" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets top="120.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </TextField>
+        <TextField maxHeight="22.0" maxWidth="100.0" minHeight="22.0" minWidth="100.0" promptText="Postal Code" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets top="250.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </TextField>
+        <TextField disable="true" editable="false" maxHeight="22.0" maxWidth="150.0" minHeight="22.0" minWidth="150.0" text="ID - Auto-Generated" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets bottom="120.0" />
+            </GridPane.margin>
+        </TextField>
+        <ComboBox editable="true" maxHeight="22.0" maxWidth="120.0" minHeight="22.0" minWidth="120.0" prefWidth="150.0" promptText="Country" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets top="60.0" />
+            </GridPane.margin>
+        </ComboBox>
+        <ComboBox editable="true" maxHeight="22.0" maxWidth="120.0" minHeight="22.0" minWidth="120.0" prefWidth="150.0" promptText="State" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets left="105.0" top="250.0" />
+            </GridPane.margin>
+        </ComboBox>
+        <TextField maxHeight="22.0" maxWidth="225.0" minHeight="22.0" minWidth="225.0" promptText="Street Address 2 (Optional)" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets top="185.0" />
+            </GridPane.margin>
+        </TextField>
+        <Button mnemonicParsing="false" text="Save" textFill="#5a5a5a" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+            <GridPane.margin>
+                <Insets bottom="40.0" />
+            </GridPane.margin>
+        </Button>
+        <TextField maxHeight="22.0" maxWidth="150.0" minHeight="22.0" minWidth="150.0" promptText="City" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <GridPane.margin>
+                <Insets bottom="85.0" />
+            </GridPane.margin>
+        </TextField>
+    </children>
+</GridPane>

@@ -80,7 +80,7 @@
             <Insets top="185.0" />
          </GridPane.margin>
       </TextField>
-      <Button mnemonicParsing="false" text="Submit" textFill="#5a5a5a" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <Button mnemonicParsing="false" text="Save" textFill="#5a5a5a" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <font>
             <Font name="Arial" size="13.0" />
          </font>
