@@ -70,7 +70,7 @@
             <Insets top="60.0" />
          </GridPane.margin>
       </ComboBox>
-      <ComboBox editable="true" maxHeight="22.0" maxWidth="120.0" minHeight="22.0" minWidth="120.0" prefWidth="150.0" promptText="State" GridPane.columnIndex="1">
+      <ComboBox editable="true" maxHeight="22.0" maxWidth="140.0" minHeight="22.0" minWidth="140.0" prefWidth="150.0" promptText="State/Province" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets left="105.0" top="250.0" />
          </GridPane.margin>

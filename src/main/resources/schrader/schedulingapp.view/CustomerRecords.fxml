@@ -78,6 +78,46 @@
             <Insets bottom="75.0" left="710.0" />
          </GridPane.margin>
       </Label>
+      <Button mnemonicParsing="false" text="Reports" textFill="#5a5a5a" GridPane.rowIndex="2">
+         <GridPane.margin>
+            <Insets left="230.0" />
+         </GridPane.margin>
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+      </Button>
+      <Button mnemonicParsing="false" text="Add Appointment" textFill="#5a5a5a" GridPane.rowIndex="2">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="340.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" text="Modify Appointment" textFill="#5a5a5a" GridPane.rowIndex="2">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="510.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" text="Delete Appointment" textFill="#5a5a5a" GridPane.rowIndex="2">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="700.0" />
+         </GridPane.margin>
+      </Button>
+      <Button mnemonicParsing="false" text="Logout" textFill="#5a5a5a" GridPane.rowIndex="2">
+         <font>
+            <Font name="Arial" size="15.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="885.0" />
+         </GridPane.margin>
+      </Button>
    </children>
     <columnConstraints>
         <ColumnConstraints />
