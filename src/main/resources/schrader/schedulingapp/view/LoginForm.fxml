@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="CENTER" maxHeight="768.0" maxWidth="1024.0" minHeight="768.0" minWidth="1024.0" style="-fx-background-color: #93CAED;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="schrader.schedulingapp.controller.LoginFormController">
+<GridPane alignment="CENTER" prefHeight="768.0" prefWidth="1036.0" style="-fx-background-color: #93CAED;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="schrader.schedulingapp.controller.LoginFormController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="0.0" prefWidth="268.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="980.0" minWidth="10.0" prefWidth="756.0" />
@@ -15,16 +15,16 @@
       <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Label fx:id="locationLabel" text="Time Zone:" textFill="#5a5a5a">
+      <Label fx:id="timeZoneLabel" text="Time Zone:" textFill="#5a5a5a" GridPane.columnIndex="1">
          <font>
-            <Font name="Geneva" size="24.0" />
+            <Font name="Geneva" size="22.0" />
          </font>
          <GridPane.margin>
-            <Insets bottom="555.0" left="25.0" />
+            <Insets bottom="656.0" left="115.0" />
          </GridPane.margin>
       </Label>
-      <StackPane style="-fx-border-color: white; -fx-border-radius: 30; -fx-background-color: orange; -fx-background-radius: 32; -fx-border-width: 3;" GridPane.columnIndex="1">
-      <Label fx:id="usernameLabel" text="Username:" textFill="#5a5a5a" GridPane.columnIndex="1">
+      <StackPane maxHeight="330.0" maxWidth="555.0" prefHeight="330.0" prefWidth="555.0" style="-fx-border-color: white; -fx-border-radius: 30; -fx-background-color: orange; -fx-background-radius: 32; -fx-border-width: 3;" GridPane.columnIndex="1">
+      <Label fx:id="usernameLabel" text="Username" textFill="#5a5a5a" GridPane.columnIndex="1">
          <font>
             <Font name="Arial" size="18.0" />
          </font>
@@ -32,17 +32,17 @@
             <Insets bottom="200.0" left="100.0" />
          </GridPane.margin>
             <StackPane.margin>
-               <Insets bottom="200.0" right="300.0" />
+               <Insets bottom="200.0" right="350.0" />
             </StackPane.margin>
       </Label>
-      <TextField maxHeight="25.0" maxWidth="200.0" minHeight="25.0" minWidth="200.0" GridPane.columnIndex="1">
+      <TextField fx:id="usernameTextBox" maxHeight="25.0" maxWidth="200.0" minHeight="25.0" minWidth="200.0" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets bottom="200.0" left="200.0" />
          </GridPane.margin>
             <StackPane.margin>
                <Insets bottom="200.0" />
             </StackPane.margin></TextField>
-         <Label text="Password: " textFill="#5a5a5a" GridPane.columnIndex="1">
+         <Label fx:id="passwordLabel" text="Password" textFill="#5a5a5a" GridPane.columnIndex="1">
             <font>
                <Font name="Arial" size="18.0" />
             </font>
@@ -50,10 +50,10 @@
                <Insets bottom="100.0" left="185.0" />
             </GridPane.margin>
             <StackPane.margin>
-               <Insets bottom="100.0" right="300.0" />
+               <Insets bottom="100.0" right="350.0" />
             </StackPane.margin>
          </Label>
-         <PasswordField maxHeight="25.0" maxWidth="200.0" minHeight="25.0" minWidth="200.0" GridPane.columnIndex="1">
+         <PasswordField fx:id="passwordTextBox" maxHeight="25.0" maxWidth="200.0" minHeight="25.0" minWidth="200.0" GridPane.columnIndex="1">
             <GridPane.margin>
                <Insets bottom="100.0" left="277.0" />
             </GridPane.margin>
@@ -61,7 +61,7 @@
                <Insets bottom="100.0" />
             </StackPane.margin>
          </PasswordField>
-         <Button mnemonicParsing="false" text="Login" textFill="#5a5a5a" GridPane.columnIndex="1">
+         <Button fx:id="loginButton" mnemonicParsing="false" text="Login" textFill="#5a5a5a" GridPane.columnIndex="1">
             <font>
                <Font name="Arial" size="15.0" />
             </font>
@@ -69,35 +69,35 @@
                <Insets left="500.0" top="10.0" />
             </GridPane.margin>
             <StackPane.margin>
-               <Insets left="300.0" top="55.0" />
+               <Insets left="150.0" top="55.0" />
             </StackPane.margin>
          </Button>
          <GridPane.margin>
-            <Insets bottom="300.0" left="100.0" right="100.0" top="200.0" />
+            <Insets bottom="300.0" top="200.0" />
          </GridPane.margin>
          <padding>
             <Insets top="100.0" />
          </padding>
       </StackPane>
-      <Button mnemonicParsing="false" text="Reset" textFill="#5a5a5a" GridPane.columnIndex="1">
+      <Button fx:id="resetButton" mnemonicParsing="false" onAction="#resetLoginFields" text="Reset" textFill="#5a5a5a" GridPane.columnIndex="1">
          <font>
             <Font name="Arial" size="15.0" />
          </font>
          <GridPane.margin>
-            <Insets left="425.0" top="55.0" />
+            <Insets left="415.0" top="55.0" />
          </GridPane.margin>
       </Button>
-      <Label text="Language:" textFill="#5a5a5a">
+      <Label fx:id="languageLabel" text="Language:" textFill="#5a5a5a">
          <font>
-            <Font name="Geneva" size="24.0" />
+            <Font name="Geneva" size="22.0" />
          </font>
          <GridPane.margin>
             <Insets bottom="650.0" left="25.0" />
          </GridPane.margin>
       </Label>
-      <ComboBox editable="true" maxWidth="195.0" minWidth="195.0" prefWidth="150.0">
+      <ComboBox fx:id="languageSelector" maxWidth="195.0" minWidth="177.0" onAction="#translateLoginScreenOnSelection" prefHeight="26.0" prefWidth="190.0">
          <GridPane.margin>
-            <Insets bottom="650.0" left="155.0" />
+            <Insets bottom="650.0" left="145.0" />
          </GridPane.margin>
       </ComboBox>
    </children>
