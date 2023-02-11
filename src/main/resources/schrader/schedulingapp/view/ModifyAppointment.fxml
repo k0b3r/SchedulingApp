@@ -17,54 +17,54 @@
         <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Label maxWidth="195.0" minWidth="195.0" prefHeight="37.0" prefWidth="210.0" style="-fx-border-color: white; -fx-border-radius: 10; -fx-background-color: orange; -fx-background-radius: 12;" text="Modify Appointment" textFill="#5a5a5a">
+        <Label maxWidth="200.0" minWidth="200.0" style="-fx-border-color: white; -fx-border-radius: 10; -fx-background-color: orange; -fx-background-radius: 12;" text="Modify Appointment" textFill="#5a5a5a">
             <GridPane.margin>
-                <Insets bottom="215.0" left="5.0" />
+                <Insets bottom="215.0" left="15.0" />
             </GridPane.margin>
             <font>
                 <Font name="Geneva" size="18.0" />
             </font>
             <padding>
-                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
             </padding>
         </Label>
-        <TextField maxHeight="22.0" maxWidth="202.0" minHeight="22.0" minWidth="202.0" prefHeight="22.0" prefWidth="202.0" promptText="Title">
+        <TextField maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Title">
             <GridPane.margin>
-                <Insets bottom="85.0" left="50.0" />
+                <Insets bottom="60.0" left="65.0" />
             </GridPane.margin>
             <font>
                 <Font name="Arial" size="13.0" />
             </font>
         </TextField>
-        <TextArea maxHeight="81.0" maxWidth="203.0" minHeight="22.0" minWidth="202.0" prefHeight="81.0" prefWidth="203.0" promptText="Description">
+        <TextArea maxHeight="81.0" maxWidth="203.0" minHeight="25.0" minWidth="202.0" promptText="Description">
             <GridPane.margin>
-                <Insets left="50.0" top="30.0" />
+                <Insets left="65.0" top="70.0" />
             </GridPane.margin>
             <font>
                 <Font name="Arial" size="13.0" />
             </font>
         </TextArea>
-        <TextField maxHeight="22.0" maxWidth="202.0" minHeight="22.0" minWidth="202.0" prefHeight="22.0" prefWidth="202.0" promptText="Location">
+        <TextField maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Location">
             <GridPane.margin>
-                <Insets left="50.0" top="145.0" />
+                <Insets left="65.0" top="200.0" />
             </GridPane.margin>
             <font>
                 <Font name="Arial" size="13.0" />
             </font>
         </TextField>
-        <TextField disable="true" editable="false" maxHeight="22.0" maxWidth="202.0" minHeight="22.0" minWidth="202.0" prefHeight="22.0" prefWidth="187.0" text="Appointment ID - Auto-Generated">
+        <TextField disable="true" editable="false" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" text="Appointment ID - Auto-Generated">
             <GridPane.margin>
-                <Insets bottom="140.0" left="50.0" />
+                <Insets bottom="130.0" left="65.0" />
             </GridPane.margin>
         </TextField>
-        <ComboBox editable="true" maxHeight="22.0" maxWidth="202.0" minHeight="22.0" minWidth="202.0" prefWidth="150.0" promptText="Contact">
+        <ComboBox editable="true" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Contact">
             <GridPane.margin>
-                <Insets left="50.0" top="200.0" />
+                <Insets left="65.0" top="270.0" />
             </GridPane.margin>
         </ComboBox>
-        <TextField maxHeight="22.0" maxWidth="202.0" minHeight="22.0" minWidth="202.0" prefWidth="202.0" promptText="Type">
+        <TextField maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Type">
             <GridPane.margin>
-                <Insets left="50.0" top="255.0" />
+                <Insets left="65.0" top="340.0" />
             </GridPane.margin>
         </TextField>
         <Button mnemonicParsing="false" text="Save" textFill="#5a5a5a" GridPane.columnIndex="2">
@@ -72,27 +72,27 @@
                 <Font name="Arial" size="13.0" />
             </font>
             <GridPane.margin>
-                <Insets left="25.0" top="125.0" />
+                <Insets left="50.0" top="150.0" />
             </GridPane.margin>
         </Button>
-        <DatePicker maxHeight="22.0" maxWidth="202.0" minHeight="22.0" minWidth="202.0" promptText="Start Date/Time" GridPane.columnIndex="1">
+        <DatePicker maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Start Date/Time" GridPane.columnIndex="1">
             <GridPane.margin>
-                <Insets bottom="140.0" left="85.0" />
+                <Insets bottom="130.0" left="110.0" />
             </GridPane.margin>
         </DatePicker>
-        <DatePicker maxHeight="22.0" maxWidth="202.0" minHeight="22.0" minWidth="202.0" promptText="End Date/Time" GridPane.columnIndex="1">
+        <DatePicker maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="End Date/Time" GridPane.columnIndex="1">
             <GridPane.margin>
-                <Insets bottom="85.0" left="85.0" />
+                <Insets bottom="60.0" left="110.0" />
             </GridPane.margin>
         </DatePicker>
-        <TextField disable="true" maxHeight="22.0" maxWidth="202.0" minHeight="22.0" minWidth="202.0" prefWidth="202.0" promptText="Customer ID - Auto Generated" GridPane.columnIndex="1">
+        <TextField disable="true" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" prefWidth="202.0" promptText="Customer ID - Auto Generated" GridPane.columnIndex="1">
             <GridPane.margin>
-                <Insets bottom="47.0" left="85.0" top="20.0" />
+                <Insets left="110.0" top="10.0" />
             </GridPane.margin>
         </TextField>
-        <TextField maxHeight="22.0" maxWidth="202.0" minHeight="22.0" minWidth="202.0" prefWidth="202.0" promptText="User ID" GridPane.columnIndex="1">
+        <TextField maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="User ID" GridPane.columnIndex="1">
             <GridPane.margin>
-                <Insets left="85.0" top="30.0" />
+                <Insets left="110.0" top="80.0" />
             </GridPane.margin>
         </TextField>
     </children>

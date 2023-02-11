@@ -5,10 +5,10 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane alignment="CENTER" prefHeight="768.0" prefWidth="1036.0" style="-fx-background-color: #93CAED;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="schrader.schedulingapp.controller.LoginFormController">
+<GridPane alignment="CENTER" maxHeight="700.0" maxWidth="850.0" minHeight="700.0" minWidth="850.0" prefHeight="700.0" prefWidth="850.0" style="-fx-background-color: #93CAED;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="schrader.schedulingapp.controller.LoginFormController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="0.0" prefWidth="268.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="980.0" minWidth="10.0" prefWidth="756.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="275.0" minWidth="0.0" prefWidth="146.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="980.0" minWidth="10.0" prefWidth="704.0" />
       <ColumnConstraints maxWidth="0.0" minWidth="0.0" prefWidth="0.0" />
    </columnConstraints>
    <rowConstraints>
@@ -20,10 +20,10 @@
             <Font name="Geneva" size="22.0" />
          </font>
          <GridPane.margin>
-            <Insets bottom="656.0" left="115.0" />
+            <Insets bottom="600.0" left="200.0" />
          </GridPane.margin>
       </Label>
-      <StackPane maxHeight="330.0" maxWidth="555.0" prefHeight="330.0" prefWidth="555.0" style="-fx-border-color: white; -fx-border-radius: 30; -fx-background-color: orange; -fx-background-radius: 32; -fx-border-width: 3;" GridPane.columnIndex="1">
+      <StackPane maxHeight="331.0" maxWidth="555.0" prefHeight="331.0" prefWidth="556.0" style="-fx-border-color: white; -fx-border-radius: 30; -fx-background-color: orange; -fx-background-radius: 32; -fx-border-width: 3;" GridPane.columnIndex="1">
       <Label fx:id="usernameLabel" text="Username" textFill="#5a5a5a" GridPane.columnIndex="1">
          <font>
             <Font name="Arial" size="18.0" />
@@ -92,12 +92,12 @@
             <Font name="Geneva" size="22.0" />
          </font>
          <GridPane.margin>
-            <Insets bottom="650.0" left="25.0" />
+            <Insets bottom="600.0" left="25.0" />
          </GridPane.margin>
       </Label>
       <ComboBox fx:id="languageSelector" maxWidth="195.0" minWidth="177.0" onAction="#translateLoginScreenOnSelection" prefHeight="26.0" prefWidth="190.0">
          <GridPane.margin>
-            <Insets bottom="650.0" left="145.0" />
+            <Insets bottom="600.0" left="145.0" />
          </GridPane.margin>
       </ComboBox>
    </children>

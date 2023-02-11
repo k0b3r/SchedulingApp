@@ -20,6 +20,11 @@ public class LoginFormController {
     public Label passwordLabel;
     ObservableList<String> languages = FXCollections.observableArrayList();
 
+
+    public void onLoginButtonClick() {
+        String username = usernameTextBox.getText().toString();
+        String password = passwordTextBox.getText().toString();
+    }
     /**
      *
      */

@@ -9,12 +9,13 @@ package schrader.schedulingapp.model;
  * @author Place Your Name Here
  */
 
-public abstract class Customer {
+public class Customer {
     private int id;
     private String name;
     private String phoneNumber;
     private String country;
     private String streetAddress1;
+    // TODO build uml and remove uneccsary lines
     private String streetAddress2;
     private String postalCode;
     private String state;
