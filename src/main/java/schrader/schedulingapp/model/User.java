@@ -1,8 +1,15 @@
 package schrader.schedulingapp.model;
 
+/**
+ * User.java class
+ */
+
+/**
+ * @author Karoline Schrader
+ */
+
 import java.security.Timestamp;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class User {
     public int userId;
@@ -10,13 +17,13 @@ public class User {
     public String password;
     public LocalDateTime createDate;
     public String createdBy;
-    public LocalDateTime lastUpdated;
+    public Timestamp lastUpdated;
     public String lastUpdatedBy;
 
     /**
      *
      */
-    public User(int userId, String username, String password, LocalDateTime createDate, String createdBy, LocalDateTime lastUpdated, String lastUpdatedBy) {
+    public User(int userId, String username, String password, LocalDateTime createDate, String createdBy, Timestamp lastUpdated, String lastUpdatedBy) {
         this.userId = userId;
         this.username = username;
         this.password = password;
@@ -110,7 +117,7 @@ public class User {
      *
      * @return
      */
-    public LocalDateTime getLastUpdated() {
+    public Timestamp getLastUpdated() {
         return lastUpdated;
     }
 
@@ -118,7 +125,7 @@ public class User {
      *
      * @param lastUpdated
      */
-    public void setLastUpdated(LocalDateTime lastUpdated) {
+    public void setLastUpdated(Timestamp lastUpdated) {
         this.lastUpdated = lastUpdated;
     }
 

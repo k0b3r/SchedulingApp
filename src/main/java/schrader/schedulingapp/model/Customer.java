@@ -1,68 +1,88 @@
 package schrader.schedulingapp.model;
 
 /**
- * Supplied class Part.java
+ * Customer.java class
  */
+
+import java.security.Timestamp;
+import java.time.LocalDateTime;
 
 /**
  *
- * @author Place Your Name Here
+ * @author Karoline Schrader
  */
 
 public class Customer {
-    private int id;
-    private String name;
-    private String phoneNumber;
+    private int customerId;
+    private String customerName;
     private String country;
-    private String streetAddress1;
-    // TODO build uml and remove uneccsary lines
-    private String streetAddress2;
+    private String address;
     private String postalCode;
     private String state;
-    private String city;
+    private String phoneNumber;
+    private LocalDateTime createdDate;
+    private String createdBy;
+    private Timestamp lastUpdated;
+    private String lastUpdatedBy;
 
-    // TODO define values to pass in
-    public Customer(int id, String name, String country, String streetAddress1, String streetAddress2, String postalCode, String state, String city) {
-        this.id = id;
-        this.name = name;
+
+    /**
+     *
+     * @param customerId
+     * @param customerName
+     * @param country
+     * @param address
+     * @param postalCode
+     * @param state
+     * @param phoneNumber
+     * @param createdDate
+     * @param createdBy
+     * @param lastUpdated
+     * @param lastUpdatedBy
+     */
+    public Customer(int customerId, String customerName, String country, String address, String postalCode, String state, String phoneNumber, LocalDateTime createdDate, String createdBy, Timestamp lastUpdated, String lastUpdatedBy) {
+        this.customerId = customerId;
+        this.customerName = customerName;
         this.country = country;
-        this.streetAddress1 = streetAddress1;
-        this.streetAddress2 = streetAddress2;
+        this.address = address;
         this.postalCode = postalCode;
         this.state = state;
-        this.city = city;
+        this.phoneNumber = phoneNumber;
+        this.createdDate = createdDate;
+        this.createdBy = createdBy;
+        this.lastUpdated = lastUpdated;
+        this.lastUpdatedBy = lastUpdatedBy;
     }
 
     /**
      *
      */
-    public int getId() {
-        return id;
+    public int getCustomerId() {
+        return customerId;
     }
 
     /**
      *
-     * @param id
+     * @param customerId
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setCustomerId(int customerId) {
+        this.customerId = customerId;
     }
 
     /**
      *
      * @return
      */
-    public String getName() {
-        return name;
+    public String getCustomerName() {
+        return customerName;
     }
 
     /**
      *
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
-
     /**
      *
      */
@@ -81,30 +101,15 @@ public class Customer {
      *
      * @return
      */
-    public String getStreetAddress1() {
-        return streetAddress1;
+    public String getAddress() {
+        return address;
     }
 
     /**
      *
      */
-    public void setStreetAddress1(String streetAddress1) {
-        this.streetAddress1 = streetAddress1;
-    }
-
-    /**
-     *
-     * @return
-     */
-    public String getStreetAddress2() {
-        return streetAddress2;
-    }
-
-    /**
-     *
-     */
-    public void setStreetAddress2(String streetAddress2) {
-        this.streetAddress2 = streetAddress2;
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     /**
@@ -139,15 +144,59 @@ public class Customer {
      *
      * @return
      */
-    public String getCity() {
-        return city;
-    }
+    public String getPhoneNumber() {return phoneNumber;}
 
     /**
      *
+     * @param phoneNumber
      */
-    public void setCity(String city) {
-        this.city = city;
-    }
+    public void setPhoneNumber(String phoneNumber) {this.phoneNumber = phoneNumber;}
 
+    /**
+     *
+     * @return
+     */
+    public LocalDateTime getCreatedDate() {return createdDate;}
+
+    /**
+     *
+     * @param createdDate
+     */
+    public void setCreatedDate(LocalDateTime createdDate) {this.createdDate = createdDate;}
+
+    /**
+     *
+     * @return
+     */
+    public String getCreatedBy() {return createdBy;}
+
+    /**
+     *
+     * @param createdBy
+     */
+    public void setCreatedBy(String createdBy) {this.createdBy = createdBy;}
+
+    /**
+     *
+     * @return
+     */
+    public Timestamp getLastUpdated() {return lastUpdated;}
+
+    /**
+     *
+     * @param lastUpdated
+     */
+    public void setLastUpdated(Timestamp lastUpdated) {this.lastUpdated = lastUpdated;}
+
+    /**
+     *
+     * @return
+     */
+    public String getLastUpdatedBy() {return lastUpdatedBy;}
+
+    /**
+     *
+     * @param lastUpdatedBy
+     */
+    public void setLastUpdatedBy(String lastUpdatedBy) {this.lastUpdatedBy = lastUpdatedBy;}
 }

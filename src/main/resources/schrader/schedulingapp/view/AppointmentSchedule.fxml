@@ -98,7 +98,7 @@
             <Font name="Arial" size="15.0" />
          </font>
          <GridPane.margin>
-            <Insets left="25.0" top="5.0" />
+            <Insets bottom="35.0" left="25.0" />
          </GridPane.margin>
       </Button>
       <Button maxHeight="28.0" minHeight="28.0" mnemonicParsing="false" text="View Customers" textFill="#5a5a5a">

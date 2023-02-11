@@ -1,56 +1,78 @@
 package schrader.schedulingapp.model;
 /**
- * Supplied class Part.java
+ * Appointment.java class
  */
 
 /**
  *
- * @author Place Your Name Here
+ * @author Karoline Schrader
  */
-import java.time.LocalTime;
-import java.util.Date;
+
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 public class Appointment {
-    private int id;
+    private int appointmentId;
     private String title;
     private String description;
     private String location;
-    private String contact;
     private String type;
-    private Date startDate;
-    private long startTime;
-    private Date endDate;
-    private long endTime;
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+    private LocalDateTime createDate;
+    private String createdBy;
+    private Timestamp lastUpdated;
+    private String lastUpdatedBy;
     private int customerId;
     private int userId;
+    private int contactId;
 
-    public Appointment(int id, String title, String description, String location, String contact, String type, Date startDate, long startTime, Date endDate, long endTime, int customerId, int userId) {
-        this.id = id;
+    /**
+     *
+     * @param appointmentId
+     * @param title
+     * @param description
+     * @param location
+     * @param type
+     * @param startDate
+     * @param endDate
+     * @param createDate
+     * @param createdBy
+     * @param lastUpdated
+     * @param lastUpdatedBy
+     * @param customerId
+     * @param userId
+     * @param contactId
+     */
+    public Appointment(int appointmentId, String title, String description, String location, String type, LocalDateTime startDate, LocalDateTime endDate, LocalDateTime createDate, String createdBy, Timestamp lastUpdated, String lastUpdatedBy, int customerId, int userId, int contactId) {
+        this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
         this.location = location;
-        this.contact = contact;
         this.type = type;
         this.startDate = startDate;
-        this.startTime = startTime;
         this.endDate = endDate;
-        this.endTime = endTime;
+        this.createDate = createDate;
+        this.createdBy = createdBy;
+        this.lastUpdated = lastUpdated;
+        this.lastUpdatedBy = lastUpdatedBy;
         this.customerId = customerId;
         this.userId = userId;
+        this.contactId = contactId;
     }
 
     /**
      *
      */
-    public int getId() {
-        return id;
+    public int getAppointmentId() {
+        return appointmentId;
     }
 
     /**
      *
      */
-    public void setId(int id) {
-        this.id = id;
+    public void setAppointmentId(int appointmentId) {
+        this.appointmentId = appointmentId;
     }
 
     /**
@@ -99,20 +121,6 @@ public class Appointment {
     /**
      *
      */
-    public String getContact() {
-        return location;
-    }
-
-    /**
-     *
-     */
-    public void setContact(String contact) {
-        this.contact = contact;
-    }
-
-    /**
-     *
-     */
     public String getType() {
         return type;
     }
@@ -127,58 +135,73 @@ public class Appointment {
     /**
      *
      */
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
     /**
      *
      */
-    public void setStartDate(Date startDate) {
-        this.startTime = startTime;
-    }
+    public void setStartDate() { this.startDate = startDate;}
 
     /**
      *
      */
-    public long getStartTime() {
-        return startTime;
-    }
-
-    /**
-     *
-     */
-    public void setStartTime(long startTime) {
-        this.startTime = startTime;
-    }
-
-    /**
-     *
-     */
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
     /**
      *
      */
-    public void setEndDate(Date endDate) {
-        this.endTime = endTime;
+    public void setEndDate(LocalDateTime endDate) {
+        this.endDate = endDate;
     }
 
     /**
      *
+     * @return
      */
-    public long getEndTime() {
-        return endTime;
-    }
+    public LocalDateTime getCreateDate() {return createDate;}
+
+    /**
+     *
+     * @param createDate
+     */
+    public void setCreateDate(LocalDateTime createDate) {this.createDate = createDate;}
+
+    /**
+     *
+     * @return
+     */
+    public String getCreatedBy() {return createdBy;}
 
     /**
      *
      */
-    public void setEndTime(long endTime) {
-        this.endTime = endTime;
-    }
+    public void setCreatedBy(String createdBy) {this.createdBy = createdBy;}
+
+    /**
+     *
+     */
+    public Timestamp getLastUpdated() {return lastUpdated;}
+
+    /**
+     *
+     */
+    public void setLastUpdated(Timestamp lastUpdated) {this.lastUpdated = lastUpdated;}
+
+    /**
+     *
+     * @return
+     */
+    public String getLastUpdatedBy() {return lastUpdatedBy;}
+
+    /**
+     *
+     * @param lastUpdatedBy
+     */
+    public void setLastUpdatedBy(String lastUpdatedBy) {this.lastUpdatedBy = lastUpdatedBy;}
 
     /**
      *
@@ -207,4 +230,16 @@ public class Appointment {
     public void setUserId(int userId) {
         this.userId = userId;
     }
+
+    /**
+     *
+     * @return
+     */
+    public int getContactId() {return contactId;}
+
+    /**
+     *
+     * @param contactId
+     */
+    public void setContactId(int contactId) {this.contactId = contactId;}
 }
