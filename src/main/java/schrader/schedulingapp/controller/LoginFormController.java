@@ -1,8 +1,16 @@
 package schrader.schedulingapp.controller;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+import schrader.schedulingapp.Utilities.UserDAO;
 
+import java.io.IOException;
+import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
@@ -19,11 +27,25 @@ public class LoginFormController {
     public Label usernameLabel;
     public Label passwordLabel;
     ObservableList<String> languages = FXCollections.observableArrayList();
+    public void createStage(ActionEvent event, String resource, String stageTitle) throws IOException {
+        Parent root = FXMLLoader.load(getClass().getResource(resource));
+        Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
+        Scene scene = new Scene(root);
+        stage.setTitle(stageTitle);
+        stage.setScene(scene);
+        stage.show();
+    }
 
-
-    public void onLoginButtonClick() {
+    public void onLoginButtonClick(ActionEvent event) throws SQLException, IOException {
         String username = usernameTextBox.getText().toString();
         String password = passwordTextBox.getText().toString();
+        if (UserDAO.select(username, password) == 1) {
+            createStage(event, "/schrader/schedulingapp/view/AppointmentSchedule.fxml", "Appointment Schedule");
+        }
+        else {
+            // TODO implement error handling or any other scenarios
+            System.out.println("NOT A VALID LOGIN");
+        }
     }
     /**
      *
@@ -65,6 +87,9 @@ public class LoginFormController {
         passwordLabel.setText(rb.getString("passwordLabel"));
     }
 
+    /**
+     *
+     */
     public void translateLoginScreenOnSelection() {
         if (languageSelector.getValue().toString().equals("French")) {
             languageLabel.setText("Langue:");
@@ -92,7 +117,6 @@ public class LoginFormController {
     public void initialize() {
         timeZoneLabel.setText(timeZoneLabel.getText() + " " + ZoneId.systemDefault());
         populateLanguageSelector();
-        System.out.println(Locale.getDefault().getLanguage());
         if (Locale.getDefault().getLanguage().equals("fr")) {
             translateLoginScreenOnLoad();
         }

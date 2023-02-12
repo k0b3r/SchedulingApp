@@ -61,7 +61,7 @@
                <Insets bottom="100.0" />
             </StackPane.margin>
          </PasswordField>
-         <Button fx:id="loginButton" mnemonicParsing="false" text="Login" textFill="#5a5a5a" GridPane.columnIndex="1">
+         <Button fx:id="loginButton" mnemonicParsing="false" onAction="#onLoginButtonClick" text="Login" textFill="#5a5a5a" GridPane.columnIndex="1">
             <font>
                <Font name="Arial" size="15.0" />
             </font>
