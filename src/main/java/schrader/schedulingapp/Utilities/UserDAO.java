@@ -1,5 +1,7 @@
 package schrader.schedulingapp.Utilities;
 
+import schrader.schedulingapp.model.User;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,5 +18,13 @@ public abstract class UserDAO {
             count++;
         }
         return count;
+    }
+
+    public static ResultSet createUser(String username) throws SQLException {
+        String sql = "SELECT * FROM client_schedule.users WHERE User_Name = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, username);
+        ResultSet rs = ps.executeQuery();
+        return rs;
     }
 }

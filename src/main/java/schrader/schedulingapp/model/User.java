@@ -8,7 +8,7 @@ package schrader.schedulingapp.model;
  * @author Karoline Schrader
  */
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 public class User {

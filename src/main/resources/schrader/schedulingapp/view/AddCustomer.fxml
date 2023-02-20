@@ -28,7 +28,7 @@
             <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Label>
-      <TextField maxHeight="25.0" maxWidth="225.0" minHeight="25.0" minWidth="225.0" promptText="Name" GridPane.columnIndex="1">
+      <TextField fx:id="customerName" maxHeight="25.0" maxWidth="225.0" minHeight="25.0" minWidth="225.0" promptText="Name" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets bottom="60.0" left="30.0" top="12.0" />
          </GridPane.margin>
@@ -36,7 +36,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </TextField>
-      <TextField maxHeight="25.0" maxWidth="225.0" minHeight="25.0" minWidth="225.0" promptText="Phone Number" GridPane.columnIndex="1">
+      <TextField fx:id="phoneNumber" maxHeight="25.0" maxWidth="225.0" minHeight="25.0" minWidth="225.0" promptText="Phone Number" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets left="30.0" top="25.0" />
          </GridPane.margin>
@@ -44,7 +44,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </TextField>
-      <TextField maxHeight="25.0" maxWidth="225.0" minHeight="25.0" minWidth="225.0" promptText="Street Address" GridPane.columnIndex="1">
+      <TextField fx:id="streetAddress" maxHeight="25.0" maxWidth="225.0" minHeight="25.0" minWidth="225.0" promptText="Street Address" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets left="30.0" top="100.0" />
          </GridPane.margin>
@@ -52,7 +52,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </TextField>
-      <TextField maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" promptText="Postal Code" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TextField fx:id="postalCode" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" promptText="Postal Code" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="80.0" left="30.0" />
          </GridPane.margin>
@@ -65,17 +65,17 @@
             <Insets bottom="120.0" left="30.0" />
          </GridPane.margin>
       </TextField>
-      <ComboBox editable="true" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" prefWidth="150.0" promptText="Country" GridPane.columnIndex="1">
+      <ComboBox fx:id="country" editable="true" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" prefWidth="150.0" promptText="Country" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets left="30.0" top="170.0" />
          </GridPane.margin>
       </ComboBox>
-      <ComboBox editable="true" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" prefWidth="150.0" promptText="State/Province" GridPane.columnIndex="1">
+      <ComboBox fx:id="state" editable="true" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" prefWidth="150.0" promptText="State/Province" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets left="30.0" top="245.0" />
          </GridPane.margin>
       </ComboBox>
-      <Button mnemonicParsing="false" text="Save" textFill="#5a5a5a" GridPane.columnIndex="2" GridPane.rowIndex="1">
+      <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveClick" text="Save" textFill="#5a5a5a" GridPane.columnIndex="2" GridPane.rowIndex="1">
          <font>
             <Font name="Arial" size="13.0" />
          </font>

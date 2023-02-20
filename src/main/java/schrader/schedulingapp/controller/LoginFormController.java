@@ -8,12 +8,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import schrader.schedulingapp.Utilities.UserDAO;
+import schrader.schedulingapp.model.User;
 
 import java.io.IOException;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
+import java.util.logging.ErrorManager;
 
 
 public class LoginFormController {
@@ -27,6 +30,7 @@ public class LoginFormController {
     public Label usernameLabel;
     public Label passwordLabel;
     ObservableList<String> languages = FXCollections.observableArrayList();
+    public static User currentUser = null;
     public void createStage(ActionEvent event, String resource, String stageTitle) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource(resource));
         Stage stage = (Stage) ((Button) event.getSource()).getScene().getWindow();
@@ -39,12 +43,18 @@ public class LoginFormController {
     public void onLoginButtonClick(ActionEvent event) throws SQLException, IOException {
         String username = usernameTextBox.getText().toString();
         String password = passwordTextBox.getText().toString();
+        ResultSet rs = UserDAO.createUser(username);
+        rs.next();
         if (UserDAO.select(username, password) == 1) {
+            currentUser = new User(rs.getInt("User_ID"), rs.getString("User_Name"), rs.getString("Password"),
+                    rs.getTimestamp("Create_Date").toLocalDateTime(), rs.getString("Created_By"), rs.getTimestamp("Last_Update"), rs.getString("Last_Updated_By"));
             createStage(event, "/schrader/schedulingapp/view/AppointmentSchedule.fxml", "Appointment Schedule");
         }
         else {
-            // TODO implement error handling or any other scenarios
-            System.out.println("NOT A VALID LOGIN");
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setHeaderText("Failed Login");
+            alert.setContentText("The username and/or password entered was incorrect");
+            alert.showAndWait();
         }
     }
     /**

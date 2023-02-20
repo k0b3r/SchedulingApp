@@ -4,7 +4,7 @@ package schrader.schedulingapp.model;
  * Customer.java class
  */
 
-import java.security.Timestamp;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 /**
@@ -24,6 +24,7 @@ public class Customer {
     private String createdBy;
     private Timestamp lastUpdated;
     private String lastUpdatedBy;
+    private Integer divisionId;
 
 
     /**
@@ -40,7 +41,7 @@ public class Customer {
      * @param lastUpdated
      * @param lastUpdatedBy
      */
-    public Customer(int customerId, String customerName, String country, String address, String postalCode, String state, String phoneNumber, LocalDateTime createdDate, String createdBy, Timestamp lastUpdated, String lastUpdatedBy) {
+    public Customer(int customerId, String customerName, String country, String address, String postalCode, String state, String phoneNumber, LocalDateTime createdDate, String createdBy, Timestamp lastUpdated, String lastUpdatedBy, Integer divisionId) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.country = country;
@@ -52,6 +53,20 @@ public class Customer {
         this.createdBy = createdBy;
         this.lastUpdated = lastUpdated;
         this.lastUpdatedBy = lastUpdatedBy;
+        this.divisionId = divisionId;
+    }
+
+    public Customer(int customerId, String customerName, String address, String postalCode, String phoneNumber, LocalDateTime createdDate, String createdBy, Timestamp lastUpdated, String lastUpdatedBy, Integer divisionId) {
+        this.customerId = customerId;
+        this.customerName = customerName;
+        this.address = address;
+        this.postalCode = postalCode;
+        this.phoneNumber = phoneNumber;
+        this.createdDate = createdDate;
+        this.createdBy = createdBy;
+        this.lastUpdated = lastUpdated;
+        this.lastUpdatedBy = lastUpdatedBy;
+        this.divisionId = divisionId;
     }
 
     /**
@@ -199,4 +214,16 @@ public class Customer {
      * @param lastUpdatedBy
      */
     public void setLastUpdatedBy(String lastUpdatedBy) {this.lastUpdatedBy = lastUpdatedBy;}
+
+    /**
+     *
+     * @return
+     */
+    public Integer getDivisionId() {return divisionId;}
+
+    /**
+     *
+     * @param divisionId
+     */
+    public void setDivisionId(Integer divisionId) {this.divisionId = divisionId;}
 }

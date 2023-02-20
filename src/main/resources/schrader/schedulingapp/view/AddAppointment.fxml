@@ -67,7 +67,7 @@
                 <Insets left="65.0" top="340.0" />
             </GridPane.margin>
         </TextField>
-        <Button mnemonicParsing="false" text="Save" textFill="#5a5a5a" GridPane.columnIndex="2">
+        <Button fx:id="saveButton" mnemonicParsing="false" onAction="#onSaveClick" text="Save" textFill="#5a5a5a" GridPane.columnIndex="2">
             <font>
                 <Font name="Arial" size="13.0" />
             </font>
