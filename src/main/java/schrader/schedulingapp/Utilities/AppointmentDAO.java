@@ -32,19 +32,4 @@ public class AppointmentDAO {
         }
         return appointments;
     }
-
-    public static ObservableList<Customer> getCustomers() throws SQLException {
-        ObservableList<Customer> customers = FXCollections.observableArrayList();
-        String sql = "SELECT * FROM client_schedule.customers";
-        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ResultSet rs = ps.executeQuery();
-        while (rs.next()) {
-            Customer customer = new Customer(rs.getInt("Customer_ID"), rs.getString("Customer_Name"), rs.getString("Address"),
-                    rs.getString("Postal_Code"), rs.getString("Phone"), rs.getTimestamp("Create_Date").toLocalDateTime(),
-                    rs.getString("Created_By"), rs.getTimestamp("Last_Update"),
-                    rs.getString("Last_Updated_By"), rs.getInt("Division_ID"));
-            customers.add(customer);
-        }
-        return customers;
-    }
 }

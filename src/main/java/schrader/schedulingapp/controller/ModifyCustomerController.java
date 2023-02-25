@@ -17,10 +17,13 @@ import javafx.stage.Stage;
 import schrader.schedulingapp.Utilities.CountryDAO;
 import schrader.schedulingapp.Utilities.CustomerDAO;
 import schrader.schedulingapp.Utilities.DivisionDAO;
+import schrader.schedulingapp.Utilities.UserDAO;
 import schrader.schedulingapp.model.Customer;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
 
 public class ModifyCustomerController {
 
@@ -52,7 +55,7 @@ public class ModifyCustomerController {
 
     public void onSaveClick(ActionEvent event) throws IOException, SQLException {
         // TODO do I just update the DB and not the object? Or both?
-        CustomerDAO.updateCustomer(customer.getCustomerId(), name.getText(), phoneNumber.getText(), streetAddress.getText(), postalCode.getText(), state.getSelectionModel().getSelectedItem().toString(), country.getSelectionModel().getSelectedItem().toString());
+        CustomerDAO.updateCustomer(customer.getCustomerId(), name.getText(), phoneNumber.getText(), streetAddress.getText(), postalCode.getText(), LocalDateTime.now(ZoneId.of("UTC")), LoginFormController.currentUser.getUsername(), state.getSelectionModel().getSelectedItem().toString(), country.getSelectionModel().getSelectedItem().toString());
         createStage(event, "/schrader/schedulingapp/view/AppointmentSchedule.fxml", "Appointment Schedule");
     }
     public void populateCustomerValues() throws SQLException {

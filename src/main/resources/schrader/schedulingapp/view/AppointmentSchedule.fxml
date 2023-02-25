@@ -83,7 +83,7 @@
             <Insets bottom="35.0" left="815.0" />
          </GridPane.margin>
       </Button>
-      <Button maxHeight="28.0" minHeight="28.0" mnemonicParsing="false" text="Delete" textFill="#5a5a5a" GridPane.rowIndex="2">
+      <Button fx:id="deleteButton" maxHeight="28.0" minHeight="28.0" mnemonicParsing="false" onAction="#onDelete" text="Delete" textFill="#5a5a5a" GridPane.rowIndex="2">
          <font>
             <Font name="Arial" size="15.0" />
          </font>

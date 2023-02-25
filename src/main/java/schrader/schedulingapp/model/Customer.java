@@ -22,7 +22,7 @@ public class Customer {
     private String phoneNumber;
     private LocalDateTime createdDate;
     private String createdBy;
-    private Timestamp lastUpdated;
+    private LocalDateTime lastUpdated;
     private String lastUpdatedBy;
     private Integer divisionId;
 
@@ -41,7 +41,7 @@ public class Customer {
      * @param lastUpdated
      * @param lastUpdatedBy
      */
-    public Customer(int customerId, String customerName, String country, String address, String postalCode, String state, String phoneNumber, LocalDateTime createdDate, String createdBy, Timestamp lastUpdated, String lastUpdatedBy, Integer divisionId) {
+    public Customer(int customerId, String customerName, String country, String address, String postalCode, String state, String phoneNumber, LocalDateTime createdDate, String createdBy, LocalDateTime lastUpdated, String lastUpdatedBy, Integer divisionId) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.country = country;
@@ -56,7 +56,7 @@ public class Customer {
         this.divisionId = divisionId;
     }
 
-    public Customer(int customerId, String customerName, String address, String postalCode, String phoneNumber, LocalDateTime createdDate, String createdBy, Timestamp lastUpdated, String lastUpdatedBy, Integer divisionId) {
+    public Customer(int customerId, String customerName, String address, String postalCode, String phoneNumber, LocalDateTime createdDate, String createdBy, LocalDateTime lastUpdated, String lastUpdatedBy, Integer divisionId) {
         this.customerId = customerId;
         this.customerName = customerName;
         this.address = address;
@@ -195,13 +195,13 @@ public class Customer {
      *
      * @return
      */
-    public Timestamp getLastUpdated() {return lastUpdated;}
+    public LocalDateTime getLastUpdated() {return lastUpdated;}
 
     /**
      *
      * @param lastUpdated
      */
-    public void setLastUpdated(Timestamp lastUpdated) {this.lastUpdated = lastUpdated;}
+    public void setLastUpdated(LocalDateTime lastUpdated) {this.lastUpdated = lastUpdated;}
 
     /**
      *

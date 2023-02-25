@@ -20,7 +20,7 @@ public abstract class UserDAO {
         return count;
     }
 
-    public static ResultSet createUser(String username) throws SQLException {
+    public static ResultSet getUser(String username) throws SQLException {
         String sql = "SELECT * FROM client_schedule.users WHERE User_Name = ?";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setString(1, username);

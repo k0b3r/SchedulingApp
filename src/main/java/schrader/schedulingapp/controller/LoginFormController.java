@@ -16,7 +16,6 @@ import java.sql.SQLException;
 import java.time.ZoneId;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import java.util.logging.ErrorManager;
 
 
 public class LoginFormController {
@@ -43,7 +42,7 @@ public class LoginFormController {
     public void onLoginButtonClick(ActionEvent event) throws SQLException, IOException {
         String username = usernameTextBox.getText().toString();
         String password = passwordTextBox.getText().toString();
-        ResultSet rs = UserDAO.createUser(username);
+        ResultSet rs = UserDAO.getUser(username);
         rs.next();
         if (UserDAO.select(username, password) == 1) {
             currentUser = new User(rs.getInt("User_ID"), rs.getString("User_Name"), rs.getString("Password"),

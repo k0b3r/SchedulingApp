@@ -15,11 +15,8 @@ import schrader.schedulingapp.Utilities.DivisionDAO;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.text.SimpleDateFormat;
-import java.time.Instant;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.ZoneId;
 
 public class AddCustomerController {
     public TextField customerName;
@@ -38,8 +35,7 @@ public class AddCustomerController {
         stage.show();
     }
     public void onSaveClick(ActionEvent event) throws IOException, SQLException {
-        // TODO verify if storing time correctly? Seems to be storing in local time not UTC
-        Timestamp currentDateTime = Timestamp.valueOf(LocalDateTime.now());
+        Timestamp currentDateTime = Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")));
         Integer divisionId = DivisionDAO.getDivisionId(country.getSelectionModel().getSelectedItem().toString(), state.getSelectionModel().getSelectedItem().toString());
         CustomerDAO.insertCustomer(CustomerDAO.generateCustomerId(), customerName.getText(), streetAddress.getText(), postalCode.getText(), phoneNumber.getText(), currentDateTime, LoginFormController.currentUser.getUsername(), currentDateTime, LoginFormController.currentUser.getUsername(), divisionId);
         createStage(event, "/schrader/schedulingapp/view/AppointmentSchedule.fxml", "Appointment Schedule");

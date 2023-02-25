@@ -6,14 +6,12 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import schrader.schedulingapp.Utilities.AppointmentDAO;
+import schrader.schedulingapp.Utilities.CustomerDAO;
 import schrader.schedulingapp.model.Appointment;
 import schrader.schedulingapp.model.Customer;
 
@@ -33,11 +31,11 @@ public class AppointmentScheduleController {
     public TableColumn userId;
 
     public TableColumn local;
-    public ObservableList<Appointment> allApps = FXCollections.observableArrayList();
-
     public ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
+    public ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
     public GridPane gridePane;
     public Label screenLabel;
+    public Button deleteButton;
 
     /**
      *
@@ -97,6 +95,56 @@ public class AppointmentScheduleController {
         }
 
     }
+    public void onDelete() throws SQLException {
+        if (!appointmentTable.getSelectionModel().isEmpty()) {
+            if (apptId.getText().equals("Appt ID")) {
+                Alert appDelete = new Alert(Alert.AlertType.CONFIRMATION);
+                appDelete.setTitle("Delete Appointment");
+                appDelete.setHeaderText("Confirm Delete");
+                appDelete.setContentText("Are you sure you want to delete the following appointment? \n" +
+                        "Appointment ID: " + allAppointments.get(allAppointments.indexOf(appointmentTable.getSelectionModel().getSelectedItem())).getAppointmentId()
+                + "\nAppointment Type: " + allAppointments.get(allAppointments.indexOf(appointmentTable.getSelectionModel().getSelectedItem())).getType());
+                appDelete.showAndWait();
+
+                if (appDelete.getResult().getText().equals("OK")) {
+                    if (allAppointments.contains(appointmentTable.getSelectionModel().getSelectedItem())) {
+                        allAppointments.remove(appointmentTable.getSelectionModel().getSelectedItem());
+                        // TODO remove from DB
+                        // TODO do all the checks for appointments
+                        // TODO maybe need to implement a post delete message including appointmentID/type
+                    }
+                }
+
+            } else {
+                Alert customerDelete = new Alert(Alert.AlertType.CONFIRMATION);
+                customerDelete.setTitle("Delete Customer");
+                customerDelete.setHeaderText("Confirm Delete");
+                customerDelete.setContentText("Are you sure you want to delete the following customer? \n" + allCustomers.get(allCustomers.indexOf(appointmentTable.getSelectionModel().getSelectedItem())).getCustomerName());
+                customerDelete.showAndWait();
+
+                if (customerDelete.getResult().getText().equals("OK")) {
+                    if (allCustomers.contains(appointmentTable.getSelectionModel().getSelectedItem())) {
+                        Boolean deleteResults = CustomerDAO.removeCustomer(allCustomers.get(allCustomers.indexOf(appointmentTable.getSelectionModel().getSelectedItem())).getCustomerId());
+                        if (deleteResults == false) {
+                            Alert deleteFailed = new Alert(Alert.AlertType.INFORMATION);
+                            deleteFailed.setTitle("Delete Customer");
+                            deleteFailed.setHeaderText("Failed Delete");
+                            deleteFailed.setContentText("This customer can't be deleted while it has associated appointments.");
+                            deleteFailed.show();
+                        } else {
+                            allCustomers.remove(appointmentTable.getSelectionModel().getSelectedItem());
+                            Alert deleteSuccess = new Alert(Alert.AlertType.INFORMATION);
+                            deleteSuccess.setTitle("Delete Customer");
+                            deleteSuccess.setHeaderText("Success");
+                            deleteSuccess.setContentText("This customer was successfully deleted");
+                            deleteSuccess.show();
+                        }
+                        // TODO do all the checks for customers
+                    }
+                }
+            }
+        }
+    }
 
     public void onCustomerClick() throws SQLException {
         // repurpose Appointment TableView to be used for Customers - Setting text to match customer columns/resizing columns
@@ -141,8 +189,8 @@ public class AppointmentScheduleController {
         contact.setMinWidth(70);
         contact.setMaxWidth(70);
 
-        allCustomers.addAll(AppointmentDAO.getCustomers());
-        allApps.addAll(AppointmentDAO.getAppointments());
+        // TODO change how I display the dates to be more human readable? Also display in local time zone of users computer
+        allCustomers.addAll(CustomerDAO.getCustomers());
         apptId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         title.setCellValueFactory(new PropertyValueFactory<>("customerName"));
         description.setCellValueFactory(new PropertyValueFactory<>("address"));
@@ -161,7 +209,7 @@ public class AppointmentScheduleController {
      * @throws SQLException
      */
     public void populateAppointmentTable() throws SQLException {
-        allApps.addAll(AppointmentDAO.getAppointments());
+        allAppointments.addAll(AppointmentDAO.getAppointments());
         apptId.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -172,7 +220,7 @@ public class AppointmentScheduleController {
         customerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userId.setCellValueFactory(new PropertyValueFactory<>("userId"));
         contact.setCellValueFactory(new PropertyValueFactory<>("contactName"));
-        appointmentTable.setItems(allApps);
+        appointmentTable.setItems(allAppointments);
     }
 
     /**
