@@ -32,4 +32,36 @@ public class AppointmentDAO {
         }
         return appointments;
     }
+
+    public static ObservableList<Appointment> getAppointmentsByMonth() throws SQLException {
+        ObservableList<Appointment> appointmentsByMonth = FXCollections.observableArrayList();
+        String sql = "select * from Appointments where MONTH(Start) = MONTH(CURDATE());";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Appointment app = new Appointment(rs.getInt("Appointment_ID"), rs.getString("Title"), rs.getString("Description"),
+                    rs.getString("Location"), rs.getString("Type"), rs.getTimestamp("Start").toLocalDateTime(),
+                    rs.getTimestamp("End").toLocalDateTime(), rs.getTimestamp("Create_Date").toLocalDateTime(),
+                    rs.getString("Created_By"), rs.getTimestamp("Last_Update"), rs.getString("Last_Updated_By"),
+                    rs.getInt("Customer_ID"), rs.getInt("User_ID"), rs.getString("Contact_ID"));
+            appointmentsByMonth.add(app);
+        }
+        return appointmentsByMonth;
+    }
+
+    public static ObservableList<Appointment> getAppointmentsByWeek() throws SQLException {
+        ObservableList<Appointment> appointmentsByWeek = FXCollections.observableArrayList();
+        String sql = "select * from Appointments where WEEK(Start) = WEEK(CURDATE())";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            Appointment app = new Appointment(rs.getInt("Appointment_ID"), rs.getString("Title"), rs.getString("Description"),
+                    rs.getString("Location"), rs.getString("Type"), rs.getTimestamp("Start").toLocalDateTime(),
+                    rs.getTimestamp("End").toLocalDateTime(), rs.getTimestamp("Create_Date").toLocalDateTime(),
+                    rs.getString("Created_By"), rs.getTimestamp("Last_Update"), rs.getString("Last_Updated_By"),
+                    rs.getInt("Customer_ID"), rs.getInt("User_ID"), rs.getString("Contact_ID"));
+            appointmentsByWeek.add(app);
+        }
+        return appointmentsByWeek;
+    }
 }

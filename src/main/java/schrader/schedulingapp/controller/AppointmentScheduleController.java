@@ -17,6 +17,9 @@ import schrader.schedulingapp.model.Customer;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.time.Instant;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 public class AppointmentScheduleController {
     public TableView appointmentTable;
@@ -31,11 +34,15 @@ public class AppointmentScheduleController {
     public TableColumn userId;
 
     public TableColumn local;
+    // TODO customers double when clicking 'customers' button, need to clear the list before every click?
     public ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
     public ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
     public GridPane gridePane;
     public Label screenLabel;
     public Button deleteButton;
+    public RadioButton byWeek;
+    public RadioButton byMonth;
+    public RadioButton viewAll;
 
     /**
      *
@@ -88,7 +95,7 @@ public class AppointmentScheduleController {
                 createStage(event, "/schrader/schedulingapp/view/ModifyAppointment.fxml", "Modify Appointment");
             }
             else {
-                ModifyCustomerController.loadSelectedCustomer((Customer) appointmentTable.getSelectionModel().getSelectedItem());
+                ModifyCustomerController.loadSelectedCustomer(allCustomers.get(allCustomers.indexOf(appointmentTable.getSelectionModel().getSelectedItem())));
                 createStage(event, "/schrader/schedulingapp/view/ModifyCustomer.fxml", "Modify Customer");
             }
 
@@ -189,7 +196,8 @@ public class AppointmentScheduleController {
         contact.setMinWidth(70);
         contact.setMaxWidth(70);
 
-        // TODO change how I display the dates to be more human readable? Also display in local time zone of users computer
+        // TODO - added clear to solve the duplicating customer issue
+        allCustomers.clear();
         allCustomers.addAll(CustomerDAO.getCustomers());
         apptId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         title.setCellValueFactory(new PropertyValueFactory<>("customerName"));
@@ -229,5 +237,28 @@ public class AppointmentScheduleController {
      */
     public void initialize() throws SQLException {
         populateAppointmentTable();
+    }
+
+    public void showAll(ActionEvent event) {
+        // TODO test scenarios, do I need to run the query for this or just refilter?
+        byWeek.setSelected(false);
+        byMonth.setSelected(false);
+        appointmentTable.setItems(allAppointments);
+    }
+
+    public void filterByMonth(ActionEvent event) throws SQLException {
+        ObservableList<Appointment> byMonthAppointments = FXCollections.observableArrayList();
+        viewAll.setSelected(false);
+        byWeek.setSelected(false);
+        byMonthAppointments.addAll(AppointmentDAO.getAppointmentsByMonth());
+        appointmentTable.setItems(byMonthAppointments);
+    }
+
+    public void filterByWeek(ActionEvent event) throws SQLException {
+        ObservableList<Appointment> byWeekAppointments = FXCollections.observableArrayList();
+        viewAll.setSelected(false);
+        byMonth.setSelected(false);
+        byWeekAppointments.addAll(AppointmentDAO.getAppointmentsByWeek());
+        appointmentTable.setItems(byWeekAppointments);
     }
 }

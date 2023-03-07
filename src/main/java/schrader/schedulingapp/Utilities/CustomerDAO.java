@@ -8,10 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.time.ZoneId;
+import java.time.*;
 
 public class CustomerDAO {
 
@@ -30,9 +27,12 @@ public class CustomerDAO {
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            LocalDate date = rs.getTimestamp("Create_Date").toLocalDateTime().toLocalDate();
-            LocalTime time = rs.getTimestamp("Create_Date").toLocalDateTime().toLocalTime();
-            LocalDateTime convertedTime = rs.getTimestamp("Create_Date").toLocalDateTime().atZone(ZoneId.of(ZoneId.systemDefault().toString())).toLocalDateTime();
+            // TODO figure out time
+            LocalDateTime ldt = rs.getTimestamp("Last_Update").toLocalDateTime();
+            ZonedDateTime zdt = ldt.atZone(ZoneId.of(ZoneId.systemDefault().toString()));
+            ZonedDateTime zdt2 = zdt.withZoneSameInstant(ZoneId.of("Europe/Paris"));
+            System.out.println("Converted Time: " + zdt);
+            System.out.println("Paris Time: " + zdt2);
 
             Integer customerId = rs.getInt("Customer_ID");
             String customerName = rs.getString("Customer_Name");

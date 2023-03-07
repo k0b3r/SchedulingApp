@@ -30,4 +30,14 @@ public class CountryDAO {
         }
         return countries;
     }
+
+    public static Integer getCountryId(String country) throws SQLException {
+        String sql = "SELECT COUNTRY_ID FROM client_schedule.countries WHERE Country = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, country);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        Integer countryId = rs.getInt("Country_ID");
+        return countryId;
+    }
 }

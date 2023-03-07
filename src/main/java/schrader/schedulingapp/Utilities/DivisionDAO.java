@@ -39,4 +39,16 @@ public class DivisionDAO {
         }
         return allStates;
     }
+
+    public static ObservableList<String> filterDivisionsByCountry(Integer countryId) throws SQLException {
+        ObservableList<String> filteredDivisions = FXCollections.observableArrayList();
+        String sql = "SELECT Division FROM client_schedule.first_level_divisions where COUNTRY_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, countryId.toString());
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            filteredDivisions.add(rs.getString("Division"));
+        }
+        return filteredDivisions;
+    }
 }

@@ -49,4 +49,8 @@ public class AddCustomerController {
     public void initialize() throws SQLException {
         populateDropdownFields();
     }
+
+    public void filterDivisionsByCountry(ActionEvent event) throws SQLException {
+        state.setItems(DivisionDAO.filterDivisionsByCountry(CountryDAO.getCountryId(country.getSelectionModel().getSelectedItem().toString())));
+    }
 }

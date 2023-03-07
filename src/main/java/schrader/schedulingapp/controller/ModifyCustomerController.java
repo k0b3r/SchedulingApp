@@ -65,12 +65,16 @@ public class ModifyCustomerController {
         streetAddress.setText(customer.getAddress());
         country.setItems(CountryDAO.getAllCountries());
         country.setValue(CountryDAO.getCountry(customer.getDivisionId()));
-        state.setItems(DivisionDAO.getAllStates());
+        state.setItems(DivisionDAO.filterDivisionsByCountry(CountryDAO.getCountryId(country.getSelectionModel().getSelectedItem().toString())));
         state.setValue(DivisionDAO.getState(customer.getDivisionId()));
         postalCode.setText(customer.getPostalCode());
 
     }
     public void initialize() throws SQLException {
         populateCustomerValues();
+    }
+
+    public void filterDivisionByCountry(ActionEvent event) throws SQLException {
+        state.setItems(DivisionDAO.filterDivisionsByCountry(CountryDAO.getCountryId(country.getSelectionModel().getSelectedItem().toString())));
     }
 }

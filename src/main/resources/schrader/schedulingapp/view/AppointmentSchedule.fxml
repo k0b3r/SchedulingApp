@@ -38,21 +38,24 @@
             <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Label>
-      <RadioButton mnemonicParsing="false" text="View by Week">
+      <RadioButton fx:id="byWeek" mnemonicParsing="false" onAction="#filterByWeek" text="View by Week">
          <GridPane.margin>
             <Insets left="620.0" top="85.0" />
          </GridPane.margin>
          <font>
             <Font name="Arial" size="15.0" />
-         </font></RadioButton>
-      <RadioButton mnemonicParsing="false" text="View by Month">
+         </font>
+         <toggleGroup>
+            <ToggleGroup fx:id="filterBy" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="byMonth" mnemonicParsing="false" onAction="#filterByMonth" text="View by Month" toggleGroup="$filterBy">
          <GridPane.margin>
             <Insets left="760.0" top="85.0" />
          </GridPane.margin>
          <font>
             <Font name="Arial" size="15.0" />
          </font></RadioButton>
-      <RadioButton mnemonicParsing="false" text="View All">
+      <RadioButton fx:id="viewAll" mnemonicParsing="false" onAction="#showAll" text="View All" toggleGroup="$filterBy">
          <GridPane.margin>
             <Insets left="900.0" top="85.0" />
          </GridPane.margin>
