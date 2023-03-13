@@ -19,7 +19,7 @@ public class Appointment {
     private String type;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private LocalDateTime createDate;
+    private Timestamp createDate;
     private String createdBy;
     private Timestamp lastUpdated;
     private String lastUpdatedBy;
@@ -45,7 +45,9 @@ public class Appointment {
      * @param userId
      * @param contactId
      */
-    public Appointment(int appointmentId, String title, String description, String location, String type, LocalDateTime startDate, LocalDateTime endDate, LocalDateTime createDate, String createdBy, Timestamp lastUpdated, String lastUpdatedBy, int customerId, int userId, int contactId) {
+
+    // TODO - Not sure if the appointment times should be in timestamp or localdatetime ?
+    public Appointment(int appointmentId, String title, String description, String location, String type, LocalDateTime startDate, LocalDateTime endDate, Timestamp createDate, String createdBy, Timestamp lastUpdated, String lastUpdatedBy, int customerId, int userId, int contactId) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
@@ -62,7 +64,7 @@ public class Appointment {
         this.contactId = contactId;
     }
 
-    public Appointment(int appointmentId, String title, String description, String location, String type, LocalDateTime startDate, LocalDateTime endDate, LocalDateTime createDate, String createdBy, Timestamp lastUpdated, String lastUpdatedBy, int customerId, int userId, String contactName) {
+    public Appointment(int appointmentId, String title, String description, String location, String type, LocalDateTime startDate, LocalDateTime endDate, Timestamp createDate, String createdBy, Timestamp lastUpdated, String lastUpdatedBy, int customerId, int userId, String contactName) {
         this.appointmentId = appointmentId;
         this.title = title;
         this.description = description;
@@ -160,7 +162,7 @@ public class Appointment {
     /**
      *
      */
-    public void setStartDate() { this.startDate = startDate;}
+    public void setStartDate(LocalDateTime startDate) { this.startDate = startDate;}
 
     /**
      *
@@ -180,13 +182,13 @@ public class Appointment {
      *
      * @return
      */
-    public LocalDateTime getCreateDate() {return createDate;}
+    public Timestamp getCreateDate() {return createDate;}
 
     /**
      *
      * @param createDate
      */
-    public void setCreateDate(LocalDateTime createDate) {this.createDate = createDate;}
+    public void setCreateDate(Timestamp createDate) {this.createDate = createDate;}
 
     /**
      *

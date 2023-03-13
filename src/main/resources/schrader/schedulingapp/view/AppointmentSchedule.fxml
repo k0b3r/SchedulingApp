@@ -14,10 +14,10 @@
           <TableColumn fx:id="description" maxWidth="100.0" minWidth="100.0" prefWidth="-1.0" text="Description" />
           <TableColumn fx:id="local" maxWidth="100.0" minWidth="100.0" prefWidth="-1.0" text="Location" />
           <TableColumn fx:id="type" maxWidth="110.0" minWidth="110.0" prefWidth="-1.0" text="Type" />
-          <TableColumn fx:id="startDate" maxWidth="130.0" minWidth="130.0" prefWidth="-1.0" text="Start Date/Time" />
-          <TableColumn fx:id="endDate" maxWidth="130.0" minWidth="130.0" prefWidth="-1.0" text="End Date/Time" />
-          <TableColumn fx:id="customerId" maxWidth="85.0" minWidth="85.0" prefWidth="-1.0" text="Customer ID" />
-          <TableColumn fx:id="userId" maxWidth="75.0" minWidth="75.0" prefWidth="-1.0" text="User ID" />
+          <TableColumn fx:id="startDate" maxWidth="140.0" minWidth="140.0" prefWidth="-1.0" text="Start Date/Time" />
+          <TableColumn fx:id="endDate" maxWidth="140.0" minWidth="140.0" prefWidth="-1.0" text="End Date/Time" />
+          <TableColumn fx:id="customerId" maxWidth="82.0" minWidth="82.0" prefWidth="-1.0" text="Customer ID" />
+          <TableColumn fx:id="userId" maxWidth="65.0" minWidth="65.0" prefWidth="-1.0" text="User ID" />
           <TableColumn fx:id="contact" maxWidth="92.0" minWidth="92.0" prefWidth="-1.0" text="Contact" />
         </columns>
          <GridPane.margin>

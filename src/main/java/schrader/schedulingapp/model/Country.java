@@ -45,7 +45,7 @@ public class Country {
 
     /**
      *
-     * @param country
+     * @param countryId
      */
     public void setCountryId(int countryId) {this.countryId = countryId;}
 

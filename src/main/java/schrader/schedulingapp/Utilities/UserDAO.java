@@ -1,6 +1,7 @@
 package schrader.schedulingapp.Utilities;
 
-import schrader.schedulingapp.model.User;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -26,5 +27,38 @@ public abstract class UserDAO {
         ps.setString(1, username);
         ResultSet rs = ps.executeQuery();
         return rs;
+    }
+
+    public static ObservableList<String> getUserNames() throws SQLException {
+        ObservableList<String> users = FXCollections.observableArrayList();
+        String sql = "SELECT User_Name FROM client_schedule.users";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+
+        while (rs.next()) {
+            String userName = rs.getString("User_Name");
+            users.add(userName);
+        }
+        return users;
+    }
+
+    public static Integer getUserId(String name) throws SQLException {
+        String sql = "SELECT User_ID FROM client_schedule.users WHERE User_Name = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, name);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        Integer userId = rs.getInt("User_ID");
+        return userId;
+    }
+
+    public static String getUserName(Integer id) throws SQLException {
+        String sql = "SELECT User_Name from client_schedule.users WHERE User_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setInt(1, id);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        String name = rs.getString("User_Name");
+        return name;
     }
 }

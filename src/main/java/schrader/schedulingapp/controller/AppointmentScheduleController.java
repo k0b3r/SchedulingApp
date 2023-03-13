@@ -17,9 +17,12 @@ import schrader.schedulingapp.model.Customer;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.time.Instant;
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class AppointmentScheduleController {
     public TableView appointmentTable;
@@ -34,7 +37,6 @@ public class AppointmentScheduleController {
     public TableColumn userId;
 
     public TableColumn local;
-    // TODO customers double when clicking 'customers' button, need to clear the list before every click?
     public ObservableList<Customer> allCustomers = FXCollections.observableArrayList();
     public ObservableList<Appointment> allAppointments = FXCollections.observableArrayList();
     public GridPane gridePane;
@@ -217,7 +219,8 @@ public class AppointmentScheduleController {
      * @throws SQLException
      */
     public void populateAppointmentTable() throws SQLException {
-        allAppointments.addAll(AppointmentDAO.getAppointments());
+        allAppointments.setAll(AppointmentDAO.getAppointments());
+        convertAppointmentsToLTZ();
         apptId.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
@@ -229,6 +232,24 @@ public class AppointmentScheduleController {
         userId.setCellValueFactory(new PropertyValueFactory<>("userId"));
         contact.setCellValueFactory(new PropertyValueFactory<>("contactName"));
         appointmentTable.setItems(allAppointments);
+    }
+
+    public void convertAppointmentsToLTZ() {
+        for (Appointment a : allAppointments) {
+            LocalDateTime startLdt = a.getStartDate();
+            ZonedDateTime startZdt = startLdt.atZone(ZoneId.of("UTC"));
+            ZonedDateTime startZdt2 = startZdt.withZoneSameInstant(ZoneId.of(ZoneId.systemDefault().toString()));
+
+            // TODO - find out if time needs to be displayed formatted or if okay as is
+            LocalDateTime startFinal = startZdt2.toLocalDateTime();
+            a.setStartDate(startFinal);
+
+            LocalDateTime endLdt = a.getEndDate();
+            ZonedDateTime endZdt = endLdt.atZone(ZoneId.of("UTC"));
+            ZonedDateTime endZdt2 = endZdt.withZoneSameInstant(ZoneId.of(ZoneId.systemDefault().toString()));
+            LocalDateTime endFinal = endZdt2.toLocalDateTime();
+            a.setEndDate(endFinal);
+        }
     }
 
     /**

@@ -17,7 +17,6 @@ import javafx.stage.Stage;
 import schrader.schedulingapp.Utilities.CountryDAO;
 import schrader.schedulingapp.Utilities.CustomerDAO;
 import schrader.schedulingapp.Utilities.DivisionDAO;
-import schrader.schedulingapp.Utilities.UserDAO;
 import schrader.schedulingapp.model.Customer;
 
 import java.io.IOException;

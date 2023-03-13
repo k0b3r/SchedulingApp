@@ -2,6 +2,7 @@ package schrader.schedulingapp.Utilities;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import schrader.schedulingapp.model.Contact;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -16,6 +17,16 @@ public class ContactDAO {
         rs.next();
         String contactName = rs.getString("Contact_Name");
         return contactName;
+    }
+
+    public static Integer getContactId(String contactId) throws SQLException {
+        String sql = "SELECT Contact_ID fROM client_schedule.contacts WHERE Contact_Name = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, contactId);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        Integer contact = rs.getInt("Contact_ID");
+        return contact;
     }
 
     public static ObservableList<String> getAllContactNames() throws SQLException {

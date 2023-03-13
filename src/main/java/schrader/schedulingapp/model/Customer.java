@@ -31,31 +31,14 @@ public class Customer {
      *
      * @param customerId
      * @param customerName
-     * @param country
      * @param address
      * @param postalCode
-     * @param state
      * @param phoneNumber
      * @param createdDate
      * @param createdBy
      * @param lastUpdated
      * @param lastUpdatedBy
      */
-    public Customer(int customerId, String customerName, String country, String address, String postalCode, String state, String phoneNumber, LocalDateTime createdDate, String createdBy, LocalDateTime lastUpdated, String lastUpdatedBy, Integer divisionId) {
-        this.customerId = customerId;
-        this.customerName = customerName;
-        this.country = country;
-        this.address = address;
-        this.postalCode = postalCode;
-        this.state = state;
-        this.phoneNumber = phoneNumber;
-        this.createdDate = createdDate;
-        this.createdBy = createdBy;
-        this.lastUpdated = lastUpdated;
-        this.lastUpdatedBy = lastUpdatedBy;
-        this.divisionId = divisionId;
-    }
-
     public Customer(int customerId, String customerName, String address, String postalCode, String phoneNumber, LocalDateTime createdDate, String createdBy, LocalDateTime lastUpdated, String lastUpdatedBy, Integer divisionId) {
         this.customerId = customerId;
         this.customerName = customerName;

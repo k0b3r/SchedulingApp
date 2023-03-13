@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import schrader.schedulingapp.Utilities.CountryDAO;
 import schrader.schedulingapp.Utilities.CustomerDAO;
 import schrader.schedulingapp.Utilities.DivisionDAO;
+import schrader.schedulingapp.model.Customer;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -35,9 +36,20 @@ public class AddCustomerController {
         stage.show();
     }
     public void onSaveClick(ActionEvent event) throws IOException, SQLException {
-        Timestamp currentDateTime = Timestamp.valueOf(LocalDateTime.now(ZoneId.of("UTC")));
+        Integer customerId = CustomerDAO.generateCustomerId();
+        String name = customerName.getText();
+        String address1 = streetAddress.getText();
+        String postal = postalCode.getText();
+        String phone = phoneNumber.getText();
+
+        // TODO - Dig into how to do time and if customers need to be in UTC as well
+        Timestamp currentDateTime = Timestamp.valueOf(LocalDateTime.now());
+
+        String user = LoginFormController.currentUser.getUsername();
         Integer divisionId = DivisionDAO.getDivisionId(country.getSelectionModel().getSelectedItem().toString(), state.getSelectionModel().getSelectedItem().toString());
-        CustomerDAO.insertCustomer(CustomerDAO.generateCustomerId(), customerName.getText(), streetAddress.getText(), postalCode.getText(), phoneNumber.getText(), currentDateTime, LoginFormController.currentUser.getUsername(), currentDateTime, LoginFormController.currentUser.getUsername(), divisionId);
+
+        // TODO do something with returned value from query?
+        CustomerDAO.insertCustomer(customerId, name, address1, postal, phone, currentDateTime, user, currentDateTime, user, divisionId);
         createStage(event, "/schrader/schedulingapp/view/AppointmentSchedule.fxml", "Appointment Schedule");
     }
 

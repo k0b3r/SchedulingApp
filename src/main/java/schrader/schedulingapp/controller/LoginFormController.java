@@ -10,10 +10,16 @@ import javafx.stage.Stage;
 import schrader.schedulingapp.Utilities.UserDAO;
 import schrader.schedulingapp.model.User;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.ZonedDateTime;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
@@ -40,21 +46,40 @@ public class LoginFormController {
     }
 
     public void onLoginButtonClick(ActionEvent event) throws SQLException, IOException {
-        String username = usernameTextBox.getText().toString();
-        String password = passwordTextBox.getText().toString();
+        String username = usernameTextBox.getText();
+        String password = passwordTextBox.getText();
+
+        String fileName = "login_activity.txt";
+        File file = new File(fileName);
+        FileWriter fw = new FileWriter(file, true);
+        PrintWriter outputFile = new PrintWriter(fw);
+
+        // Saving to login_activity.txt in UTC
+        LocalDateTime ldt = LocalDateTime.now();
+        ZonedDateTime zdt = ldt.atZone(ZoneId.systemDefault());
+        ZonedDateTime zdtToUtc = zdt.withZoneSameInstant(ZoneId.of("UTC"));
+
         ResultSet rs = UserDAO.getUser(username);
         rs.next();
         if (UserDAO.select(username, password) == 1) {
             currentUser = new User(rs.getInt("User_ID"), rs.getString("User_Name"), rs.getString("Password"),
                     rs.getTimestamp("Create_Date").toLocalDateTime(), rs.getString("Created_By"), rs.getTimestamp("Last_Update"), rs.getString("Last_Updated_By"));
             createStage(event, "/schrader/schedulingapp/view/AppointmentSchedule.fxml", "Appointment Schedule");
+
+            // append to the file, date/time is in UTC but displayed in timestamp as it's more readable
+            outputFile.print("Successful login by " + currentUser.getUsername() + " at " + Timestamp.valueOf(zdtToUtc.toLocalDateTime()) + "\n");
         }
         else {
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             alert.setHeaderText("Failed Login");
             alert.setContentText("The username and/or password entered was incorrect");
             alert.showAndWait();
+
+            // TODO - check with tutor, not sure if file should also be in UTC, but made sense to me since we store other values in UTC
+            // append to the file, date/time is in UTC but displayed in timestamp as it's more readable
+            outputFile.print("Unsuccessful login by " + username + " at " + Timestamp.valueOf(zdtToUtc.toLocalDateTime()) + "\n");
         }
+        outputFile.close();
     }
     /**
      *

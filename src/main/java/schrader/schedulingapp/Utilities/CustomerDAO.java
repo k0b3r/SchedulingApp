@@ -21,18 +21,52 @@ public class CustomerDAO {
         return customerId;
     }
 
+    public static Integer getCustomerID(String name) throws SQLException {
+        String sql = "SELECT Customer_ID FROM client_schedule.customers WHERE Customer_Name = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, name);
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        Integer customerID = rs.getInt("Customer_ID");
+        return customerID;
+    }
+
+    public static String getCustomerName(Integer customerId) throws SQLException {
+        String sql = "SELECT Customer_Name FROM client_schedule.customers WHERE Customer_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ps.setString(1, String.valueOf(customerId));
+        ResultSet rs = ps.executeQuery();
+        rs.next();
+        String name = rs.getString("Customer_Name");
+        return name;
+    }
+
+    public static ObservableList<String> getCustomerNames() throws SQLException {
+        ObservableList<String> names = FXCollections.observableArrayList();
+        String sql = "SELECT Customer_Name from client_schedule.customers";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
+        ResultSet rs = ps.executeQuery();
+        while (rs.next()) {
+            String customerName = rs.getString("Customer_Name");
+            names.add(customerName);
+        }
+        return names;
+    }
+
     public static ObservableList<Customer> getCustomers() throws SQLException {
         ObservableList<Customer> customers = FXCollections.observableArrayList();
         String sql = "SELECT * FROM client_schedule.customers";
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            // TODO figure out time
+            // TODO check with tutor if I can leave time this way or if I need to convert to UTC for customers too
+            /*
             LocalDateTime ldt = rs.getTimestamp("Last_Update").toLocalDateTime();
-            ZonedDateTime zdt = ldt.atZone(ZoneId.of(ZoneId.systemDefault().toString()));
-            ZonedDateTime zdt2 = zdt.withZoneSameInstant(ZoneId.of("Europe/Paris"));
-            System.out.println("Converted Time: " + zdt);
-            System.out.println("Paris Time: " + zdt2);
+            ZonedDateTime zdt = ldt.atZone(ZoneId.systemDefault());
+            ZonedDateTime zdtToUtc = zdt.withZoneSameInstant(ZoneId.of("UTC"));
+            // use timestamp value of utc to
+            System.out.println(Timestamp.valueOf(zdtToUtc.toLocalDateTime()));
+             */
 
             Integer customerId = rs.getInt("Customer_ID");
             String customerName = rs.getString("Customer_Name");
