@@ -1,7 +1,8 @@
-package schrader.schedulingapp.Utilities;
+package schrader.schedulingapp.DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import schrader.schedulingapp.helper.JDBC;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

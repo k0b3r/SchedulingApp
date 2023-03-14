@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:id="gridePane" maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" style="-fx-background-color: #93CAED;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="schrader.schedulingapp.controller.AppointmentScheduleController">
+<GridPane fx:id="gridePane" maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" style="-fx-background-color: #93CAED;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="schrader.schedulingapp.controller.AppointmentsController">
    <children>
       <TableView fx:id="appointmentTable" editable="true" maxHeight="400.0" maxWidth="980.0" minHeight="400.0" minWidth="980.0" prefHeight="400.0" prefWidth="980.0" GridPane.rowIndex="1">
         <columns>
@@ -32,7 +32,7 @@
             <Font name="Geneva" size="20.0" />
          </font>
          <GridPane.margin>
-            <Insets bottom="50.0" left="15.0" />
+            <Insets bottom="35.0" left="15.0" />
          </GridPane.margin>
          <padding>
             <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
@@ -55,14 +55,14 @@
          <font>
             <Font name="Arial" size="15.0" />
          </font></RadioButton>
-      <RadioButton fx:id="viewAll" mnemonicParsing="false" onAction="#showAll" text="View All" toggleGroup="$filterBy">
+      <RadioButton fx:id="viewAll" mnemonicParsing="false" onAction="#initialize" text="View All" toggleGroup="$filterBy">
          <GridPane.margin>
             <Insets left="900.0" top="85.0" />
          </GridPane.margin>
          <font>
             <Font name="Arial" size="15.0" />
          </font></RadioButton>
-      <Button maxHeight="28.0" minHeight="28.0" mnemonicParsing="false" text="Reports" textFill="#5a5a5a">
+      <Button fx:id="reports" maxHeight="28.0" minHeight="28.0" mnemonicParsing="false" onAction="#onReportClick" text="Reports" textFill="#5a5a5a">
          <GridPane.margin>
             <Insets left="25.0" top="80.0" />
          </GridPane.margin>
@@ -102,7 +102,7 @@
             <Insets bottom="35.0" left="25.0" />
          </GridPane.margin>
       </Button>
-      <Button maxHeight="28.0" minHeight="28.0" mnemonicParsing="false" onAction="#onCustomerClick" text="View Customers" textFill="#5a5a5a">
+      <Button fx:id="viewCustomerButton" maxHeight="28.0" minHeight="28.0" mnemonicParsing="false" onAction="#onCustomerClick" text="View Customers" textFill="#5a5a5a">
          <font>
             <Font name="Arial" size="15.0" />
          </font>

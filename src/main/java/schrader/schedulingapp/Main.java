@@ -5,7 +5,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import schrader.schedulingapp.Utilities.JDBC;
+import schrader.schedulingapp.helper.JDBC;
 
 import java.io.IOException;
 

@@ -80,7 +80,15 @@
             <Font name="Arial" size="13.0" />
          </font>
          <GridPane.margin>
-            <Insets bottom="15.0" left="60.0" />
+            <Insets left="30.0" />
+         </GridPane.margin>
+      </Button>
+      <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelClick" text="Cancel" textFill="#5a5a5a" GridPane.columnIndex="2" GridPane.rowIndex="1">
+         <font>
+            <Font name="Arial" size="13.0" />
+         </font>
+         <GridPane.margin>
+            <Insets left="90.0" />
          </GridPane.margin>
       </Button>
    </children>

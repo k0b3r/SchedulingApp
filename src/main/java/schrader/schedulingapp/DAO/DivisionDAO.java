@@ -1,7 +1,8 @@
-package schrader.schedulingapp.Utilities;
+package schrader.schedulingapp.DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import schrader.schedulingapp.helper.JDBC;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -9,8 +10,8 @@ import java.sql.SQLException;
 
 public class DivisionDAO {
     public static String getState(Integer divisionId) throws SQLException {
-        String divisionQuery = "SELECT Division FROM client_schedule.first_level_divisions WHERE Division_ID = ?";
-        PreparedStatement ps = JDBC.connection.prepareStatement(divisionQuery);
+        String sql = "SELECT Division FROM client_schedule.first_level_divisions WHERE Division_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setInt(1, divisionId);
         ResultSet rs = ps.executeQuery();
         rs.next();
@@ -31,8 +32,8 @@ public class DivisionDAO {
 
     public static ObservableList<String> getAllStates() throws SQLException {
         ObservableList<String> allStates = FXCollections.observableArrayList();
-        String allStatesQuery = "SELECT Division FROM client_schedule.first_level_divisions";
-        PreparedStatement ps = JDBC.connection.prepareStatement(allStatesQuery);
+        String sql = "SELECT Division FROM client_schedule.first_level_divisions";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
             allStates.add(rs.getString("Division"));

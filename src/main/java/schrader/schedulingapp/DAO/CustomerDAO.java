@@ -1,7 +1,8 @@
-package schrader.schedulingapp.Utilities;
+package schrader.schedulingapp.DAO;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import schrader.schedulingapp.helper.JDBC;
 import schrader.schedulingapp.model.Customer;
 
 import java.sql.PreparedStatement;
@@ -27,8 +28,8 @@ public class CustomerDAO {
         ps.setString(1, name);
         ResultSet rs = ps.executeQuery();
         rs.next();
-        Integer customerID = rs.getInt("Customer_ID");
-        return customerID;
+        Integer customerId = rs.getInt("Customer_ID");
+        return customerId;
     }
 
     public static String getCustomerName(Integer customerId) throws SQLException {
@@ -59,15 +60,6 @@ public class CustomerDAO {
         PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ResultSet rs = ps.executeQuery();
         while (rs.next()) {
-            // TODO check with tutor if I can leave time this way or if I need to convert to UTC for customers too
-            /*
-            LocalDateTime ldt = rs.getTimestamp("Last_Update").toLocalDateTime();
-            ZonedDateTime zdt = ldt.atZone(ZoneId.systemDefault());
-            ZonedDateTime zdtToUtc = zdt.withZoneSameInstant(ZoneId.of("UTC"));
-            // use timestamp value of utc to
-            System.out.println(Timestamp.valueOf(zdtToUtc.toLocalDateTime()));
-             */
-
             Integer customerId = rs.getInt("Customer_ID");
             String customerName = rs.getString("Customer_Name");
             String address = rs.getString("Address");
@@ -86,11 +78,10 @@ public class CustomerDAO {
         return customers;
     }
 
-    public static Integer insertCustomer(Integer customerId, String customerName, String address, String postalCode, String phone, Timestamp createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, Integer divisionId) throws SQLException {
-        String insertCustomerQuery = "INSERT INTO client_schedule.customers (Customer_ID, Customer_Name, Address, Postal_Code, Phone, Create_Date, Created_By, Last_Update, Last_Updated_By, Division_ID)\n" +
+    public static void insertCustomer(Integer customerId, String customerName, String address, String postalCode, String phone, Timestamp createDate, String createdBy, Timestamp lastUpdate, String lastUpdatedBy, Integer divisionId) throws SQLException {
+        String sql = "INSERT INTO client_schedule.customers (Customer_ID, Customer_Name, Address, Postal_Code, Phone, Create_Date, Created_By, Last_Update, Last_Updated_By, Division_ID)\n" +
                 "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-        // TODO do I need to also create this customer as an object/insert to list?
-        PreparedStatement ps = JDBC.connection.prepareStatement(insertCustomerQuery);
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
         ps.setInt(1, customerId);
         ps.setString(2, customerName);
         ps.setString(3, address);
@@ -101,28 +92,25 @@ public class CustomerDAO {
         ps.setTimestamp(8, lastUpdate);
         ps.setString(9, lastUpdatedBy);
         ps.setInt(10, divisionId);
-        Integer result = ps.executeUpdate();
-        return result;
+        ps.executeUpdate();
     }
 
-    public static Integer updateCustomer(Integer customerId, String customerName, String phoneNumber, String address, String postalCode, LocalDateTime lastUpdate, String lastUpdatedBy, String state, String country) throws SQLException {
+    public static void updateCustomer(Integer customerId, String customerName, String phoneNumber, String address,
+                                         String postalCode, Timestamp lastUpdate, String lastUpdatedBy, Integer divisionId) throws SQLException {
 
-        String updateCustomerQuery = "UPDATE client_schedule.customers " +
-                "SET Customer_Name = ?, Phone = ?, Address = ?, Postal_Code = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = (SELECT Division_ID from client_schedule.first_level_divisions where Country_ID = (SELECT Country_ID from client_schedule.countries where Country = ?) AND Division = ?) WHERE Customer_ID = ?";
-        PreparedStatement ps = JDBC.connection.prepareStatement(updateCustomerQuery);
-        Timestamp lastUpdated = Timestamp.valueOf(lastUpdate);
+        String sql = "UPDATE client_schedule.customers " +
+                "SET Customer_Name = ?, Phone = ?, Address = ?, Postal_Code = ?, Last_Update = ?, Last_Updated_By = ?, Division_ID = ? WHERE Customer_ID = ?";
+        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
 
         ps.setString(1, customerName);
         ps.setString(2, phoneNumber);
         ps.setString(3, address);
         ps.setString(4, postalCode);
-        ps.setTimestamp(5, lastUpdated);
+        ps.setTimestamp(5, lastUpdate);
         ps.setString(6, lastUpdatedBy);
-        ps.setString(7, country);
-        ps.setString(8, state);
-        ps.setInt(9, customerId);
-        Integer rowsEffected = ps.executeUpdate();
-        return rowsEffected;
+        ps.setInt(7, divisionId);
+        ps.setInt(8, customerId);
+        ps.executeUpdate();
     }
 
     public static Boolean removeCustomer(Integer customerId) throws SQLException {

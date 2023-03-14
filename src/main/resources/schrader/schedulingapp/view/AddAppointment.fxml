@@ -17,7 +17,7 @@
         <RowConstraints maxHeight="196.0" minHeight="10.0" prefHeight="122.0" vgrow="SOMETIMES" />
     </rowConstraints>
     <children>
-        <Label maxWidth="180.0" minWidth="180.0" style="-fx-border-color: white; -fx-border-radius: 10; -fx-background-color: orange; -fx-background-radius: 12;" text="New Appointment" textFill="#5a5a5a">
+        <Label maxWidth="180.0" minWidth="180.0" style="-fx-border-color: white; -fx-border-radius: 10; -fx-background-color: orange; -fx-background-radius: 12;" text="Add Appointment" textFill="#5a5a5a">
             <GridPane.margin>
                 <Insets bottom="215.0" left="15.0" />
             </GridPane.margin>
@@ -72,15 +72,23 @@
                 <Font name="Arial" size="13.0" />
             </font>
             <GridPane.margin>
-                <Insets left="50.0" />
+                <Insets left="30.0" />
             </GridPane.margin>
         </Button>
-      <DatePicker fx:id="startDate" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" onAction="#setEndDateToStartDate" promptText="Start Date" GridPane.columnIndex="1">
+        <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelClick" text="Cancel" textFill="#5a5a5a" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+            <GridPane.margin>
+                <Insets left="90.0" />
+            </GridPane.margin>
+        </Button>
+      <DatePicker fx:id="startDate" editable="false" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" onAction="#setEndDateToStartDate" promptText="Start Date" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets bottom="130.0" left="110.0" />
          </GridPane.margin>
       </DatePicker>
-        <DatePicker fx:id="endDate" disable="true" editable="false" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="End Date" GridPane.columnIndex="1">
+        <DatePicker fx:id="endDate" editable="false" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="End Date" GridPane.columnIndex="1">
             <GridPane.margin>
                 <Insets left="110.0" top="10.0" />
             </GridPane.margin>
@@ -95,12 +103,12 @@
             <Insets left="110.0" top="215.0" />
          </GridPane.margin>
       </ComboBox>
-      <ComboBox fx:id="startTime" editable="true" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Start Time" GridPane.columnIndex="1">
+      <ComboBox fx:id="startTime" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Start Time" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets bottom="60.0" left="110.0" />
          </GridPane.margin>
       </ComboBox>
-      <ComboBox fx:id="endTime" editable="true" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="End Time" GridPane.columnIndex="1">
+      <ComboBox fx:id="endTime" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="End Time" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets left="110.0" top="80.0" />
          </GridPane.margin>
