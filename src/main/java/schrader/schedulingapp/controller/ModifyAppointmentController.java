@@ -107,7 +107,7 @@ public class ModifyAppointmentController implements Initializable {
      * @param appointmentId
      * @param start
      * @param end
-     * @return
+     * @return appointmentInfo
      * @throws SQLException
      */
     public StringBuilder checkForOverlappingAppointments(Integer appointmentId, LocalDateTime start, LocalDateTime end) throws SQLException {
@@ -228,7 +228,7 @@ public class ModifyAppointmentController implements Initializable {
     }
 
     /**
-     * This method sets up the Modify Appointment screen to be populated with all expected values (see populateDropDownValues & populateAppointmentValues).
+     * This method sets up the Modify Appointment screen to be populated with all expected values (see populateDropDownValues and populateAppointmentValues).
      * @param url
      * @param resourceBundle
      */

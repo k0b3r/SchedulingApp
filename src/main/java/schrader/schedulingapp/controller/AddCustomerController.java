@@ -88,10 +88,9 @@ public class AddCustomerController implements Initializable {
     /**
      * This method populates the state combo box with values for user selection (instead of listing all possible options
      * across countries, the options are filtered based on the country the user selects).
-     * @param event
      * @throws SQLException
      */
-    public void filterDivisionsByCountry(ActionEvent event) throws SQLException {
+    public void filterDivisionsByCountry() throws SQLException {
         state.setItems(DivisionDAO.filterDivisionsByCountry(CountryDAO.getCountryId(country.getSelectionModel().getSelectedItem())));
     }
 

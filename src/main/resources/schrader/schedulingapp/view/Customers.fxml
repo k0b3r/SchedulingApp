@@ -9,16 +9,16 @@
     <children>
         <TableView fx:id="customerTable" editable="true" maxHeight="400.0" maxWidth="980.0" minHeight="400.0" minWidth="980.0" prefHeight="400.0" prefWidth="980.0" GridPane.rowIndex="1">
             <columns>
-                <TableColumn fx:id="customerId" maxWidth="50.0" minWidth="50.0" prefWidth="-1.0" text="Cust. ID" />
-                <TableColumn fx:id="name" maxWidth="115.0" minWidth="115.0" prefWidth="-1.0" text="Name" />
+                <TableColumn fx:id="customerId" maxWidth="55.0" minWidth="55.0" prefWidth="-1.0" text="Cust. ID" />
+                <TableColumn fx:id="name" maxWidth="105.0" minWidth="105.0" prefWidth="-1.0" text="Name" />
                 <TableColumn fx:id="address" maxWidth="157.0" minWidth="157.0" prefWidth="-1.0" text="Address" />
                 <TableColumn fx:id="postalCode" maxWidth="55.0" minWidth="55.0" prefWidth="-1.0" text="Postal" />
-                <TableColumn fx:id="phoneNumber" maxWidth="110.0" minWidth="110.0" prefWidth="-1.0" text="Phone" />
-                <TableColumn fx:id="createDate" maxWidth="140.0" minWidth="140.0" prefWidth="-1.0" text="Create Date" />
+                <TableColumn fx:id="phoneNumber" maxWidth="100.0" minWidth="100.0" prefWidth="-1.0" text="Phone" />
+                <TableColumn fx:id="createDate" maxWidth="120.0" minWidth="120.0" prefWidth="-1.0" text="Create Date" />
                 <TableColumn fx:id="createdBy" maxWidth="70.0" minWidth="70.0" prefWidth="-1.0" text="Created By" />
-                <TableColumn fx:id="lastUpdated" maxWidth="145.0" minWidth="145.0" prefWidth="-1.0" text="Last Updated" />
+                <TableColumn fx:id="lastUpdated" maxWidth="120.0" minWidth="120.0" prefWidth="-1.0" text="Last Updated" />
                 <TableColumn fx:id="lastUpdatedBy" maxWidth="75.0" minWidth="75.0" prefWidth="-1.0" text="Updated By" />
-                <TableColumn fx:id="divisionId" maxWidth="62.0" minWidth="62.0" prefWidth="-1.0" text="Division ID" />
+                <TableColumn fx:id="division" maxWidth="125.0" minWidth="125.0" prefWidth="-1.0" text="Division" />
             </columns>
             <GridPane.margin>
                 <Insets left="10.0" />

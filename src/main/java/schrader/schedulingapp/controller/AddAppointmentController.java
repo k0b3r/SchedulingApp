@@ -53,7 +53,7 @@ public class AddAppointmentController implements Initializable {
      * This method checks if the selected appointment start/end dates/times overlap with existing appointment start/end dates/times.
      * @param start
      * @param end
-     * @return
+     * @return appointmentInfo
      * @throws SQLException
      */
     public StringBuilder checkForOverlappingAppointments(LocalDateTime start, LocalDateTime end) throws SQLException {

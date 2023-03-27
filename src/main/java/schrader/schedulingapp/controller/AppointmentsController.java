@@ -56,8 +56,8 @@ public class AppointmentsController implements Initializable {
      * @throws IOException
      */
     public void onLogoutClick(ActionEvent event) throws IOException {
-        Helpers.createStage(event, "/schrader/schedulingapp/view/LoginForm.fxml", "Login");
         LoginFormController.currentUser = null;
+        Helpers.createStage(event, "/schrader/schedulingapp/view/LoginForm.fxml", "Login");
     }
 
     /**
@@ -95,14 +95,16 @@ public class AppointmentsController implements Initializable {
      * @throws SQLException
      */
     public void onDelete() throws SQLException {
+        StringBuilder deletedApp = new StringBuilder("");
         if (!appointmentTable.getSelectionModel().isEmpty()) {
             Appointment selectedApp = appointmentTable.getSelectionModel().getSelectedItem();
             Alert appDelete = new Alert(Alert.AlertType.CONFIRMATION);
             appDelete.setTitle("Delete Appointment");
             appDelete.setHeaderText("Confirm Delete");
-            appDelete.setContentText("Are you sure you want to delete the following appointment? \n" + "Appointment ID: "
-                    + allAppointments.get(allAppointments.indexOf(appointmentTable.getSelectionModel().getSelectedItem())).getAppointmentId()
+            deletedApp.append(allAppointments.get(allAppointments.indexOf(appointmentTable.getSelectionModel().getSelectedItem())).getAppointmentId()
                     + "\nAppointment Type: " + allAppointments.get(allAppointments.indexOf(appointmentTable.getSelectionModel().getSelectedItem())).getType());
+            appDelete.setContentText("Are you sure you want to delete the following appointment? \n" + "Appointment ID: "
+                    + deletedApp);
             appDelete.showAndWait();
 
             if (appDelete.getResult().getText().equals("OK")) {
@@ -113,14 +115,16 @@ public class AppointmentsController implements Initializable {
                         Alert deleteSuccess = new Alert(Alert.AlertType.INFORMATION);
                         deleteSuccess.setTitle("Delete Appointment");
                         deleteSuccess.setHeaderText("Appointment Deleted");
-                        deleteSuccess.setContentText("The appointment was successfully deleted.");
+                        deleteSuccess.setContentText("The following appointment was successfully deleted. \n" + "Appointment ID: "
+                                + deletedApp);
                         deleteSuccess.showAndWait();
                     }
                     else {
                         Alert deleteFailed = new Alert(Alert.AlertType.INFORMATION);
                         deleteFailed.setTitle("Delete Appointment");
                         deleteFailed.setHeaderText("Delete Failed");
-                        deleteFailed.setContentText("The appointment was not be deleted. Please try again.");
+                        deleteFailed.setContentText("The following appointment was NOT successfully deleted. Please try again. \n" + "Appointment ID: "
+                                + deletedApp);
                         deleteFailed.showAndWait();
                     }
                 }
@@ -228,7 +232,6 @@ public class AppointmentsController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
         try {
             populateAppointmentTable();
         } catch (SQLException e) {

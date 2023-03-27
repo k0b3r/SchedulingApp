@@ -17,8 +17,8 @@ import java.time.LocalDateTime;
  */
 public class AppointmentDAO {
     /**
-     * This method
-     * @return
+     * This method gets the largest Appointment_ID in the Appointments table, increments that number, and returns it.
+     * @return appId
      * @throws SQLException
      */
     public static Integer generateAppointmentId() throws SQLException {
@@ -31,8 +31,9 @@ public class AppointmentDAO {
     }
 
     /**
-     *
-     * @return
+     * This method gets all appointments from the Appointments table, uses it to create Appointment objects, and returns
+     * those objects in a list.
+     * @return appointments
      * @throws SQLException
      */
     public static ObservableList<Appointment> getAppointments() throws SQLException {
@@ -56,9 +57,10 @@ public class AppointmentDAO {
     }
 
     /**
-     *
+     * This method gets the appointments associated with the customer id provided, creates objects with it, and returns
+     * those objects in a list.
      * @param id
-     * @return
+     * @return appointmentsByCustomer
      * @throws SQLException
      */
     public static ObservableList<Appointment> getAppointmentsByCustomer(Integer id) throws SQLException {
@@ -79,42 +81,10 @@ public class AppointmentDAO {
     }
 
     /**
-     *
-     * @param type
-     * @return
-     * @throws SQLException
-     */
-    public static Integer getTotalAppointmentsByType(String type) throws SQLException {
-        String sql = "SELECT COUNT(Appointment_ID) FROM client_schedule.appointments WHERE Type = ?";
-        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ps.setString(1, type);
-        ResultSet rs = ps.executeQuery();
-        rs.next();
-        Integer total = rs.getInt(1);
-        return total;
-    }
-
-    /**
-     *
-     * @param month
-     * @return
-     * @throws SQLException
-     */
-    public static Integer getTotalAppointmentsByMonth(Integer month) throws SQLException {
-        String sql = "SELECT COUNT(Appointment_ID) FROM client_schedule.appointments WHERE MONTH(Start) = ?";
-        PreparedStatement ps = JDBC.connection.prepareStatement(sql);
-        ps.setInt(1, month);
-        ResultSet rs = ps.executeQuery();
-        rs.next();
-        Integer total = rs.getInt(1);
-        return total;
-    }
-
-    /**
-     *
+     * This method gets the total number of appointments with the type value provided and that take place in the month provided.
      * @param type
      * @param month
-     * @return
+     * @return total
      * @throws SQLException
      */
     public static Integer getTotalAppointmentsByTypeAndMonth(String type, Integer month) throws SQLException {
@@ -129,10 +99,10 @@ public class AppointmentDAO {
     }
 
     /**
-     *
+     * This method gets the total number of appointments created by the user provided and created in the month provided.
      * @param userId
      * @param month
-     * @return
+     * @return total
      * @throws SQLException
      */
     public static Integer getTotalAppointmentsByUserAndMonth(Integer userId, Integer month) throws SQLException {
@@ -147,8 +117,8 @@ public class AppointmentDAO {
     }
 
     /**
-     *
-     * @return
+     * This method returns a list of all appointment types without duplicates.
+     * @return types
      * @throws SQLException
      */
     public static ObservableList<String> getAppointmentTypes() throws SQLException {
@@ -163,7 +133,7 @@ public class AppointmentDAO {
     }
 
     /**
-     *
+     * This method inserts a row into the Appointment table with the provided values.
      * @param appointmentId
      * @param title
      * @param description
@@ -178,7 +148,7 @@ public class AppointmentDAO {
      * @param customerId
      * @param userId
      * @param contact
-     * @return
+     * @return result
      * @throws SQLException
      */
     public static Integer insertAppointment(Integer appointmentId, String title, String description, String location,
@@ -208,7 +178,7 @@ public class AppointmentDAO {
     }
 
     /**
-     *
+     * This method updates the provided Appointment with the given values in the Appointments table.
      * @param appointmentId
      * @param title
      * @param description
@@ -221,7 +191,7 @@ public class AppointmentDAO {
      * @param customerId
      * @param userId
      * @param contact
-     * @return
+     * @return result
      * @throws SQLException
      */
     public static Integer updateAppointment(Integer appointmentId, String title, String description, String location,
@@ -246,9 +216,9 @@ public class AppointmentDAO {
     }
 
     /**
-     *
+     * This method deletes the provided appointment from the Appointments table.
      * @param appointmentId
-     * @return
+     * @return result
      * @throws SQLException
      */
     public static Integer deleteAppointment(Integer appointmentId) throws SQLException {

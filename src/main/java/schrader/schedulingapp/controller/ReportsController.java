@@ -80,17 +80,16 @@ public class ReportsController implements Initializable {
      */
     public void generateTypeMonthTotal() throws SQLException {
         String total;
-        if (!typeCombo.getSelectionModel().isEmpty() && monthCombo.getSelectionModel().isEmpty()) {
-            total = String.valueOf(AppointmentDAO.getTotalAppointmentsByType(typeCombo.getSelectionModel().getSelectedItem()));
-            appointmentTotal.setText(total);
-        }
-        else if (typeCombo.getSelectionModel().isEmpty() && !monthCombo.getSelectionModel().isEmpty()) {
-            total = String.valueOf(AppointmentDAO.getTotalAppointmentsByMonth(Month.valueOf(monthCombo.getSelectionModel().getSelectedItem().toString()).getValue()));
+        if (!typeCombo.getSelectionModel().isEmpty() && !monthCombo.getSelectionModel().isEmpty()) {
+            total = String.valueOf(AppointmentDAO.getTotalAppointmentsByTypeAndMonth(typeCombo.getSelectionModel().getSelectedItem(), Month.valueOf(monthCombo.getSelectionModel().getSelectedItem().toString()).getValue()));
             appointmentTotal.setText(total);
         }
         else {
-            total = String.valueOf(AppointmentDAO.getTotalAppointmentsByTypeAndMonth(typeCombo.getSelectionModel().getSelectedItem(), Month.valueOf(monthCombo.getSelectionModel().getSelectedItem().toString()).getValue()));
-            appointmentTotal.setText(total);
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Reports");
+            alert.setHeaderText("Type and month selection are required.");
+            alert.setContentText("Both the type and month are required to generate the number of appointments.");
+            alert.showAndWait();
         }
     }
 
