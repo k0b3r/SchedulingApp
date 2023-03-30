@@ -15,9 +15,13 @@ import schrader.schedulingapp.model.Appointment;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoField;
+import java.util.Date;
 import java.util.ResourceBundle;
 
 /**
@@ -205,19 +209,20 @@ public class AppointmentsController implements Initializable {
 
     /**
      * This method populates the Appointments table with existing appointments (start and end date are only displayed as Strings
-     * for formatting purposes, the objects themselves use LocalDateTime and are stored as such)
+     * for formatting purposes (using lambda expressions), the objects themselves use LocalDateTime and are stored as such)
      * @throws SQLException
      */
     public void populateAppointmentTable() throws SQLException {
         allAppointments.setAll(AppointmentDAO.getAppointments());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
         apptId.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
         description.setCellValueFactory(new PropertyValueFactory<>("description"));
         local.setCellValueFactory(new PropertyValueFactory<>("location"));
         type.setCellValueFactory(new PropertyValueFactory<>("type"));
+        // lambda expression
         startDate.setCellValueFactory(appointment -> new SimpleStringProperty(appointment.getValue().getStartDate().format(formatter)));
+        // lambda expression
         endDate.setCellValueFactory(appointment -> new SimpleStringProperty(appointment.getValue().getEndDate().format(formatter)));
         customerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         userId.setCellValueFactory(new PropertyValueFactory<>("userId"));

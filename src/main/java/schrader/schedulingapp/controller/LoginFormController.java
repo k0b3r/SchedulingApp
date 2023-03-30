@@ -81,7 +81,7 @@ public class LoginFormController implements Initializable {
             ObservableList<Appointment> allApps = AppointmentDAO.getAppointments();
             for (Appointment a : allApps) {
                 if ((a.getStartDate().isEqual(LocalDateTime.now()) || a.getStartDate().isAfter(LocalDateTime.now())) && (a.getStartDate().isBefore(LocalDateTime.now().plusMinutes(15)) || a.getStartDate().isEqual(LocalDateTime.now().plusMinutes(15)))) {
-                    String startDateFormatted = new SimpleDateFormat("MM/dd/yyyy HH:mm").format(Timestamp.valueOf(a.getStartDate()));
+                    String startDateFormatted = new SimpleDateFormat("MM/dd/yyyy hh:mm a").format(Timestamp.valueOf(a.getStartDate()));
                     appointmentInfo.append(a.getAppointmentId()).append(", ").append(startDateFormatted).append("\n");
                 }
             }

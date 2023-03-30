@@ -1,5 +1,6 @@
 package schrader.schedulingapp.controller;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.Initializable;
@@ -17,6 +18,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.*;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 /**
@@ -38,8 +40,12 @@ public class ModifyAppointmentController implements Initializable {
     public TextArea description;
     public TextField local;
     public ComboBox <String> customer;
-    public ComboBox <LocalTime> startTime;
-    public ComboBox <LocalTime> endTime;
+    public Spinner<Integer> startTimeHour;
+    public Spinner<Integer> startTimeMin;
+    public Spinner<Integer> endTimeHour;
+    public Spinner<Integer> endTimeMin;
+    public ComboBox<String> startAMPM;
+    public ComboBox<String> endAMPM;
 
     /**
      * This method is used to pass the selected appointment from the Appointment screen, in order to load its values on the Modify Appointment form.
@@ -65,13 +71,12 @@ public class ModifyAppointmentController implements Initializable {
         contact.setItems(ContactDAO.getAllContactNames());
         customer.setItems(CustomerDAO.getCustomerNames());
         user.setItems(UserDAO.getUserNames());
-        LocalTime startMin = LocalTime.of(5,0);
-        LocalTime startMax = LocalTime.of(21,45);
-        startTime.setItems(Helpers.setTimeSlots(startMin, startMax));
 
-        LocalTime endMin = LocalTime.of(5,15);
-        LocalTime endMax = LocalTime.of(22,0);
-        endTime.setItems(Helpers.setTimeSlots(endMin, endMax));
+        ObservableList<String> amPm = FXCollections.observableArrayList();
+        amPm.add("AM");
+        amPm.add("PM");
+        startAMPM.setItems(amPm);
+        endAMPM.setItems(amPm);
     }
 
     /**
@@ -86,16 +91,32 @@ public class ModifyAppointmentController implements Initializable {
         local.setText(appointment.getLocation());
         contact.setValue(appointment.getContactName());
         type.setText(appointment.getType());
+
+        DateTimeFormatter ampmFormatter = DateTimeFormatter.ofPattern("a");
+        DateTimeFormatter hourFormatter = DateTimeFormatter.ofPattern("hh");
+
         LocalDateTime startDateTime = appointment.getStartDate();
         LocalDate startDateVal = startDateTime.toLocalDate();
-        LocalTime startTimeVal = startDateTime.toLocalTime();
-        startDate.setValue(startDateVal);
-        startTime.setValue(startTimeVal);
+        Integer startHour = Integer.valueOf(startDateTime.format(hourFormatter));
+        Integer startMin = startDateTime.getMinute();
+
         LocalDateTime endDateTime = appointment.getEndDate();
         LocalDate endDateVal = endDateTime.toLocalDate();
-        LocalTime endTimeVal = endDateTime.toLocalTime();
+        Integer endHour = Integer.valueOf(endDateTime.format(hourFormatter));
+        Integer endMin = endDateTime.getMinute();
+
+
+        startDate.setValue(startDateVal);
+        startTimeHour.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 12, startHour));
+        startTimeMin.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(00, 59, startMin));
+        startAMPM.setValue(startDateTime.format(ampmFormatter));
+
+
         endDate.setValue(endDateVal);
-        endTime.setValue(endTimeVal);
+        endTimeHour.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(1, 12, endHour));
+        endTimeMin.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(00, 59, endMin));
+        endAMPM.setValue(endDateTime.format(ampmFormatter));
+
         customer.setValue(String.valueOf(CustomerDAO.getCustomerName(appointment.getCustomerId())));
         user.setValue(UserDAO.getUserName(appointment.getUserId()));
 
@@ -103,14 +124,15 @@ public class ModifyAppointmentController implements Initializable {
 
     /**
      * This method checks if the selected appointment start/end dates/times overlap with existing appointment
-     * start/end dates/times (excluding the appointment dates/time of the appointment being modified)
+     * start/end dates/times for the given customerId (excluding the appointment dates/time of the appointment being modified)
      * @param appointmentId
+     * @param customerId
      * @param start
      * @param end
      * @return appointmentInfo
      * @throws SQLException
      */
-    public StringBuilder checkForOverlappingAppointments(Integer appointmentId, LocalDateTime start, LocalDateTime end) throws SQLException {
+    public StringBuilder checkForOverlappingAppointments(Integer appointmentId, Integer customerId, LocalDateTime start, LocalDateTime end) throws SQLException {
         StringBuilder appointmentInfo = new StringBuilder();
         ObservableList<Appointment> allAppointments = AppointmentDAO.getAppointments();
         for (Appointment a : allAppointments) {
@@ -119,14 +141,14 @@ public class ModifyAppointmentController implements Initializable {
             }
                 LocalDateTime appStart = a.getStartDate();
                 LocalDateTime appEnd = a.getEndDate();
-                String startDateFormatted = new SimpleDateFormat("MM/dd/yyyy HH:mm").format(Timestamp.valueOf(appStart));
-                String endDateFormatted = new SimpleDateFormat("HH:mm").format(Timestamp.valueOf(appEnd));
+                String startDateFormatted = new SimpleDateFormat("MM/dd/yyyy hh:mm a").format(Timestamp.valueOf(appStart));
+                String endDateFormatted = new SimpleDateFormat("hh:mm a").format(Timestamp.valueOf(appEnd));
 
-                if ((start.isBefore(appStart) || start.isAfter(appStart) || start.equals(appStart)) && ((end.isAfter(appStart) && end.isBefore(appEnd)) || end.equals(appEnd))) {
-                    appointmentInfo.append(a.getAppointmentId()).append(", ").append(startDateFormatted).append(" - ").append(endDateFormatted).append("\n");
-                } else if ((start.equals(appStart) || (start.isAfter(appStart) && start.isBefore(appEnd))) && ((end.isAfter(appStart) && end.isBefore(appEnd)) || end.equals(appEnd) || end.isAfter(appEnd))) {
+            if (customerId == a.getCustomerId() && a.getAppointmentId() != appointmentId) {
+                if ((start.isBefore(appStart) && end.isAfter(appEnd)) || (start.isAfter(appStart) && start.isBefore(appEnd)) || (end.isAfter(appStart) && end.isBefore(appEnd)) || (start.equals(appStart) || end.equals(appEnd))) {
                     appointmentInfo.append(a.getAppointmentId()).append(", ").append(startDateFormatted).append(" - ").append(endDateFormatted).append("\n");
                 }
+            }
         }
         return appointmentInfo;
     }
@@ -143,8 +165,8 @@ public class ModifyAppointmentController implements Initializable {
      */
     public void onSaveClick(ActionEvent event) throws SQLException, IOException {
         if (title.getText().isEmpty() || description.getText().isEmpty() || local.getText().isEmpty() || type.getText().isEmpty()
-                || startDate.getValue() == null || startTime.getSelectionModel().getSelectedItem() == null || endDate.getValue() == null
-                || endTime.getSelectionModel().getSelectedItem() == null || customer.getSelectionModel().getSelectedItem() == null || user.getSelectionModel().getSelectedItem() == null || contact.getSelectionModel().getSelectedItem() == null) {
+                || startDate.getValue() == null || startTimeHour == null || startTimeMin == null|| endDate.getValue() == null
+                || endTimeHour == null || endTimeMin == null || customer.getSelectionModel().getSelectedItem() == null || user.getSelectionModel().getSelectedItem() == null || contact.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Modify Appointment");
             alert.setHeaderText("Incomplete Fields");
@@ -157,26 +179,45 @@ public class ModifyAppointmentController implements Initializable {
             String descVal = description.getText();
             String locationVal = local.getText();
             String typeVal = type.getText();
+            Integer startHour = startTimeHour.getValue();
+            Integer endHour = endTimeHour.getValue();
 
-            LocalDateTime startDateTime = LocalDateTime.of(startDate.getValue(), LocalTime.parse(startTime.getSelectionModel().getSelectedItem().toString()));
+            if (startAMPM.getSelectionModel().getSelectedItem().equals("AM") && startHour == 12) {
+                startHour = 0;
+            }
+            else if (startAMPM.getSelectionModel().getSelectedItem().equals("PM") && startTimeHour.getValue() != 12) {
+                startHour += 12;
+            }
+
+            if (endAMPM.getSelectionModel().getSelectedItem().equals("AM") && endHour == 12) {
+                endHour = 0;
+            }
+            else if (endAMPM.getSelectionModel().getSelectedItem().equals("PM") && endTimeHour.getValue() != 12) {
+                endHour += 12;
+            }
+
+            LocalDateTime startDateTime = LocalDateTime.of(startDate.getValue(), LocalTime.of(startHour, startTimeMin.getValue()));
             ZonedDateTime startZdt = startDateTime.atZone(ZoneId.of(ZoneId.systemDefault().toString()));
             ZonedDateTime startEtzZdt = startZdt.withZoneSameInstant(ZoneId.of("America/New_York"));
             LocalDateTime startEtzLdt = startEtzZdt.toLocalDateTime();
+            LocalTime startEtzLt = LocalTime.of(startEtzLdt.getHour(), startEtzLdt.getMinute());
 
-            LocalDateTime endDateTime = LocalDateTime.of(endDate.getValue(), LocalTime.parse(endTime.getSelectionModel().getSelectedItem().toString()));
+            LocalDateTime endDateTime = LocalDateTime.of(endDate.getValue(), LocalTime.of(endHour, endTimeMin.getValue()));
             ZonedDateTime endZdt = endDateTime.atZone(ZoneId.of(ZoneId.systemDefault().toString()));
             ZonedDateTime endEtzZdt = endZdt.withZoneSameInstant(ZoneId.of("America/New_York"));
             LocalDateTime endEtzLdt = endEtzZdt.toLocalDateTime();
+            LocalTime endEtzLt = LocalTime.of(endEtzLdt.getHour(), endEtzLdt.getMinute());
 
-            LocalDateTime businessStart = LocalDateTime.of(startDate.getValue(), LocalTime.of(8, 0));
-            LocalDateTime businessEnd = LocalDateTime.of(endDate.getValue(), LocalTime.of(22, 0));
+            LocalTime businessStart = LocalTime.of(8, 0);
+            LocalTime businessEnd = LocalTime.of(22, 0);
 
             Timestamp currentDateTime = Timestamp.valueOf(LocalDateTime.now());
             String createdBy = LoginFormController.currentUser.getUsername();
             Integer custId = CustomerDAO.getCustomerID(customer.getSelectionModel().getSelectedItem());
             Integer userId = UserDAO.getUserId(user.getSelectionModel().getSelectedItem());
             Integer contactId = ContactDAO.getContactId(contact.getSelectionModel().getSelectedItem());
-            StringBuilder overlappingAppInfo = checkForOverlappingAppointments(appId, startDateTime, endDateTime);
+            StringBuilder overlappingAppInfo = checkForOverlappingAppointments(appId, custId, startDateTime, endDateTime);
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm");
 
             if (!startDate.getValue().equals(endDate.getValue())) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -185,7 +226,7 @@ public class ModifyAppointmentController implements Initializable {
                 alert.setContentText("Start and End Dates must be the same day.");
                 alert.showAndWait();
             }
-            else if ((startEtzLdt.isBefore(businessStart) || startEtzLdt.isAfter(businessEnd)) || (endEtzLdt.isBefore(businessStart) || endEtzLdt.isAfter(businessEnd))) {
+            else if ((!startDateTime.format(formatter).equals(appointment.getStartDate().format(formatter)) || !endDateTime.format(formatter).equals(appointment.getEndDate().format(formatter))) && ((startEtzLt.isBefore(businessStart) || startEtzLt.isAfter(businessEnd)) || (endEtzLt.isBefore(businessStart) || endEtzLt.isAfter(businessEnd)))) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Modify Appointment");
                 alert.setHeaderText("Invalid Start and/or End Time");

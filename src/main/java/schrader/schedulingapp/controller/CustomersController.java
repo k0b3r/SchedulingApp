@@ -134,13 +134,14 @@ public class CustomersController implements Initializable {
     }
 
     /**
-     * This method populates the Customers table with all customers (Create Date and Last Updated are only displayed as Strings
-     * for formatting purposes, the objects themselves use LocalDateTime and are stored as such)
+     * This method populates the Customers table with all customers (Create Date and Last Updated are only displayed as Strings using lambda expressions
+     * for formatting purposes, the objects themselves use LocalDateTime and are stored as such). A lambda expression is also
+     * used to display the state associated with the Customers divisionId.
      * @throws SQLException
      */
     public void populateCustomersTable() throws SQLException {
         allCustomers.addAll(CustomerDAO.getCustomers());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
 
         customerId.setCellValueFactory(new PropertyValueFactory<>("customerId"));
         name.setCellValueFactory(new PropertyValueFactory<>("customerName"));

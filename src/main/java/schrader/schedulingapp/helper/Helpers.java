@@ -36,20 +36,4 @@ public class Helpers {
         stage.setScene(scene);
         stage.show();
     }
-
-    /**
-     * This method populates a list with time selections starting at the min value, incrementing by 15 minutes, until the
-     * max time is reached. This list is used to populate appointment time combo boxes. s
-     * @param min
-     * @param max
-     * @return timeSlots
-     */
-    public static ObservableList<LocalTime> setTimeSlots(LocalTime min, LocalTime max) {
-        ObservableList<LocalTime> timeSlots = FXCollections.observableArrayList();
-        while (min.isBefore(max.plusSeconds(1))) {
-            timeSlots.add(min);
-            min = min.plusMinutes(15);
-        }
-        return timeSlots;
-    }
 }

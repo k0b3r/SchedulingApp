@@ -5,20 +5,20 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<GridPane fx:id="gridePane" maxHeight="600.0" maxWidth="1000.0" minHeight="600.0" minWidth="1000.0" style="-fx-background-color: #93CAED;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="schrader.schedulingapp.controller.CustomersController">
+<GridPane fx:id="gridePane" maxHeight="600.0" maxWidth="1100.0" minHeight="600.0" minWidth="1100.0" style="-fx-background-color: #93CAED;" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="schrader.schedulingapp.controller.CustomersController">
     <children>
-        <TableView fx:id="customerTable" editable="true" maxHeight="400.0" maxWidth="980.0" minHeight="400.0" minWidth="980.0" prefHeight="400.0" prefWidth="980.0" GridPane.rowIndex="1">
+        <TableView fx:id="customerTable" editable="true" maxHeight="400.0" maxWidth="980.0" minHeight="400.0" minWidth="1050.0" prefHeight="400.0" prefWidth="1050.0" GridPane.rowIndex="1">
             <columns>
-                <TableColumn fx:id="customerId" maxWidth="55.0" minWidth="55.0" prefWidth="-1.0" text="Cust. ID" />
+                <TableColumn fx:id="customerId" maxWidth="60.0" minWidth="60.0" prefWidth="-1.0" text="Cust. ID" />
                 <TableColumn fx:id="name" maxWidth="105.0" minWidth="105.0" prefWidth="-1.0" text="Name" />
                 <TableColumn fx:id="address" maxWidth="157.0" minWidth="157.0" prefWidth="-1.0" text="Address" />
-                <TableColumn fx:id="postalCode" maxWidth="55.0" minWidth="55.0" prefWidth="-1.0" text="Postal" />
+                <TableColumn fx:id="postalCode" maxWidth="60.0" minWidth="60.0" prefWidth="-1.0" text="Postal" />
                 <TableColumn fx:id="phoneNumber" maxWidth="100.0" minWidth="100.0" prefWidth="-1.0" text="Phone" />
-                <TableColumn fx:id="createDate" maxWidth="120.0" minWidth="120.0" prefWidth="-1.0" text="Create Date" />
-                <TableColumn fx:id="createdBy" maxWidth="70.0" minWidth="70.0" prefWidth="-1.0" text="Created By" />
-                <TableColumn fx:id="lastUpdated" maxWidth="120.0" minWidth="120.0" prefWidth="-1.0" text="Last Updated" />
-                <TableColumn fx:id="lastUpdatedBy" maxWidth="75.0" minWidth="75.0" prefWidth="-1.0" text="Updated By" />
-                <TableColumn fx:id="division" maxWidth="125.0" minWidth="125.0" prefWidth="-1.0" text="Division" />
+                <TableColumn fx:id="createDate" maxWidth="140.0" minWidth="140.0" prefWidth="-1.0" text="Create Date" />
+                <TableColumn fx:id="createdBy" maxWidth="80.0" minWidth="80.0" prefWidth="-1.0" text="Created By" />
+                <TableColumn fx:id="lastUpdated" maxWidth="140.0" minWidth="140.0" prefWidth="-1.0" text="Last Updated" />
+                <TableColumn fx:id="lastUpdatedBy" maxWidth="80.0" minWidth="80.0" prefWidth="-1.0" text="Updated By" />
+                <TableColumn fx:id="division" maxWidth="130.0" minWidth="130.0" prefWidth="-1.0" text="Division" />
             </columns>
             <GridPane.margin>
                 <Insets left="10.0" />

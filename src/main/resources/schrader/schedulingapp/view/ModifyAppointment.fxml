@@ -28,7 +28,7 @@
                 <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
             </padding>
         </Label>
-        <TextField fx:id="title" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Title">
+        <TextField fx:id="title" focusTraversable="false" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Title">
             <GridPane.margin>
                 <Insets bottom="60.0" left="65.0" />
             </GridPane.margin>
@@ -36,7 +36,7 @@
                 <Font name="Arial" size="13.0" />
             </font>
         </TextField>
-        <TextArea fx:id="description" maxHeight="90.0" maxWidth="203.0" minHeight="25.0" minWidth="202.0" promptText="Description" wrapText="true">
+        <TextArea fx:id="description" focusTraversable="false" maxHeight="90.0" maxWidth="203.0" minHeight="25.0" minWidth="202.0" promptText="Description" wrapText="true">
             <GridPane.margin>
                 <Insets left="65.0" top="80.0" />
             </GridPane.margin>
@@ -44,7 +44,7 @@
                 <Font name="Arial" size="13.0" />
             </font>
         </TextArea>
-        <TextField fx:id="local" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Location">
+        <TextField fx:id="local" focusTraversable="false" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Location">
             <GridPane.margin>
                 <Insets left="65.0" top="215.0" />
             </GridPane.margin>
@@ -57,12 +57,12 @@
                 <Insets bottom="130.0" left="65.0" />
             </GridPane.margin>
         </TextField>
-        <ComboBox fx:id="contact" editable="true" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Contact">
+        <ComboBox fx:id="contact" editable="true" focusTraversable="false" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Contact">
             <GridPane.margin>
                 <Insets left="65.0" top="285.0" />
             </GridPane.margin>
         </ComboBox>
-        <TextField fx:id="type" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Type">
+        <TextField fx:id="type" focusTraversable="false" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Type">
             <GridPane.margin>
                 <Insets left="65.0" top="355.0" />
             </GridPane.margin>
@@ -72,7 +72,7 @@
                 <Font name="Arial" size="13.0" />
             </font>
             <GridPane.margin>
-                <Insets left="30.0" />
+                <Insets left="30.0" top="50.0" />
             </GridPane.margin>
         </Button>
         <Button fx:id="cancelButton" mnemonicParsing="false" onAction="#onCancelClick" text="Cancel" textFill="#5a5a5a" GridPane.columnIndex="2" GridPane.rowIndex="1">
@@ -80,38 +80,69 @@
                 <Font name="Arial" size="13.0" />
             </font>
             <GridPane.margin>
-                <Insets left="90.0" />
+                <Insets left="90.0" top="50.0" />
             </GridPane.margin>
         </Button>
-        <DatePicker fx:id="startDate" editable="false" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" onAction="#setEndDateToStartDate" promptText="Start Date" GridPane.columnIndex="1">
+        <DatePicker fx:id="startDate" editable="false" focusTraversable="false" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" onAction="#setEndDateToStartDate" GridPane.columnIndex="1">
             <GridPane.margin>
-                <Insets bottom="130.0" left="110.0" />
+                <Insets bottom="90.0" left="110.0" />
             </GridPane.margin>
         </DatePicker>
-        <DatePicker fx:id="endDate" editable="false" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="End Date" GridPane.columnIndex="1">
+        <DatePicker fx:id="endDate" editable="false" focusTraversable="false" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" GridPane.columnIndex="1">
             <GridPane.margin>
-                <Insets left="110.0" top="10.0" />
+                <Insets left="110.0" top="90.0" />
             </GridPane.margin>
         </DatePicker>
-        <ComboBox fx:id="customer" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" prefWidth="202.0" promptText="Customer" GridPane.columnIndex="1">
+        <ComboBox fx:id="customer" focusTraversable="false" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" prefWidth="202.0" promptText="Customer" GridPane.columnIndex="1">
             <GridPane.margin>
-                <Insets left="110.0" top="150.0" />
+                <Insets left="110.0" top="285.0" />
             </GridPane.margin>
         </ComboBox>
-        <ComboBox fx:id="user" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="User ID" GridPane.columnIndex="1">
+        <ComboBox fx:id="user" focusTraversable="false" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="User ID" GridPane.columnIndex="1">
             <GridPane.margin>
-                <Insets left="110.0" top="215.0" />
+                <Insets left="110.0" top="355.0" />
             </GridPane.margin>
         </ComboBox>
-      <ComboBox fx:id="startTime" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="Start Time" GridPane.columnIndex="1">
-         <GridPane.margin>
-            <Insets bottom="60.0" left="110.0" />
-         </GridPane.margin>
-      </ComboBox>
-      <ComboBox fx:id="endTime" maxHeight="25.0" maxWidth="202.0" minHeight="25.0" minWidth="202.0" promptText="End Time" GridPane.columnIndex="1">
-         <GridPane.margin>
-            <Insets left="110.0" top="80.0" />
-         </GridPane.margin>
-      </ComboBox>
+        <Spinner fx:id="startTimeHour" editable="true" focusTraversable="false" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="100.0" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets bottom="20.0" left="110.0" />
+            </GridPane.margin>
+        </Spinner>
+        <Spinner fx:id="startTimeMin" editable="true" focusTraversable="false" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="100.0" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets bottom="20.0" left="215.0" />
+            </GridPane.margin>
+        </Spinner>
+        <Spinner fx:id="endTimeHour" editable="true" focusTraversable="false" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="100.0" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets left="110.0" top="160.0" />
+            </GridPane.margin>
+        </Spinner>
+        <Spinner fx:id="endTimeMin" editable="true" focusTraversable="false" maxHeight="25.0" maxWidth="100.0" minHeight="25.0" minWidth="100.0" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets left="215.0" top="160.0" />
+            </GridPane.margin>
+        </Spinner>
+        <ComboBox fx:id="startAMPM" focusTraversable="false" maxHeight="25.0" maxWidth="65.0" minHeight="25.0" minWidth="65.0" GridPane.columnIndex="2">
+            <GridPane.margin>
+                <Insets bottom="20.0" left="112.0" />
+            </GridPane.margin></ComboBox>
+        <ComboBox fx:id="endAMPM" focusTraversable="false" maxHeight="25.0" maxWidth="65.0" minHeight="25.0" minWidth="65.0" GridPane.columnIndex="2">
+            <GridPane.margin>
+                <Insets left="112.0" top="160.0" />
+            </GridPane.margin></ComboBox>
+        <Label text="End Date/Time" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets left="110.0" top="40.0" />
+            </GridPane.margin>
+            <font>
+                <Font name="Arial" size="13.0" />
+            </font>
+        </Label>
+        <Label text="Start Date/Time" GridPane.columnIndex="1">
+            <GridPane.margin>
+                <Insets bottom="140.0" left="110.0" />
+            </GridPane.margin>
+        </Label>
     </children>
 </GridPane>

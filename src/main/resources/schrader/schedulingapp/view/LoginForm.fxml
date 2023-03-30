@@ -35,7 +35,7 @@
                <Insets bottom="200.0" right="350.0" />
             </StackPane.margin>
       </Label>
-      <TextField fx:id="usernameTextBox" maxHeight="25.0" maxWidth="200.0" minHeight="25.0" minWidth="200.0" GridPane.columnIndex="1">
+      <TextField fx:id="usernameTextBox" focusTraversable="false" maxHeight="25.0" maxWidth="200.0" minHeight="25.0" minWidth="200.0" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets bottom="200.0" left="200.0" />
          </GridPane.margin>
@@ -53,7 +53,7 @@
                <Insets bottom="100.0" right="350.0" />
             </StackPane.margin>
          </Label>
-         <PasswordField fx:id="passwordTextBox" maxHeight="25.0" maxWidth="200.0" minHeight="25.0" minWidth="200.0" GridPane.columnIndex="1">
+         <PasswordField fx:id="passwordTextBox" focusTraversable="false" maxHeight="25.0" maxWidth="200.0" minHeight="25.0" minWidth="200.0" GridPane.columnIndex="1">
             <GridPane.margin>
                <Insets bottom="100.0" left="277.0" />
             </GridPane.margin>

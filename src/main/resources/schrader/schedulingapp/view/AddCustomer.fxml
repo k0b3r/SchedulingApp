@@ -28,7 +28,7 @@
             <Insets bottom="5.0" left="8.0" right="8.0" top="5.0" />
          </padding>
       </Label>
-      <TextField fx:id="customerName" maxHeight="25.0" maxWidth="225.0" minHeight="25.0" minWidth="225.0" promptText="Name" GridPane.columnIndex="1">
+      <TextField fx:id="customerName" focusTraversable="false" maxHeight="25.0" maxWidth="225.0" minHeight="25.0" minWidth="225.0" promptText="Name" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets bottom="60.0" left="30.0" top="12.0" />
          </GridPane.margin>
@@ -36,7 +36,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </TextField>
-      <TextField fx:id="phoneNumber" maxHeight="25.0" maxWidth="225.0" minHeight="25.0" minWidth="225.0" promptText="Phone Number" GridPane.columnIndex="1">
+      <TextField fx:id="phoneNumber" focusTraversable="false" maxHeight="25.0" maxWidth="225.0" minHeight="25.0" minWidth="225.0" promptText="Phone Number" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets left="30.0" top="25.0" />
          </GridPane.margin>
@@ -52,7 +52,7 @@
             <Font name="Arial" size="13.0" />
          </font>
       </TextField>
-      <TextField fx:id="postalCode" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" promptText="Postal Code" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <TextField fx:id="postalCode" focusTraversable="false" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" promptText="Postal Code" GridPane.columnIndex="1" GridPane.rowIndex="1">
          <GridPane.margin>
             <Insets bottom="80.0" left="30.0" />
          </GridPane.margin>
@@ -65,12 +65,12 @@
             <Insets bottom="120.0" left="30.0" />
          </GridPane.margin>
       </TextField>
-      <ComboBox fx:id="country" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" onAction="#filterDivisionsByCountry" prefWidth="150.0" promptText="Country" GridPane.columnIndex="1">
+      <ComboBox fx:id="country" focusTraversable="false" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" onAction="#filterDivisionsByCountry" prefWidth="150.0" promptText="Country" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets left="30.0" top="170.0" />
          </GridPane.margin>
       </ComboBox>
-      <ComboBox fx:id="state" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" prefWidth="150.0" promptText="State/Province" GridPane.columnIndex="1">
+      <ComboBox fx:id="state" focusTraversable="false" maxHeight="25.0" maxWidth="150.0" minHeight="25.0" minWidth="150.0" prefWidth="150.0" promptText="State/Province" GridPane.columnIndex="1">
          <GridPane.margin>
             <Insets left="30.0" top="245.0" />
          </GridPane.margin>

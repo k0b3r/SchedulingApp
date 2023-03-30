@@ -57,12 +57,13 @@ public class ReportsController implements Initializable {
     }
 
     /**
-     * This method populates the Reports Appointment table based on the Customer selected.
+     * This method populates the Reports Appointment table based on the Customer selected. The start and end date are only displayed
+     * as Strings using lambda expressions for formatting purposes, the objects themselves use LocalDateTime and are stored as such.
      * @throws SQLException
      */
     public void populateCustomerAppointmentTable() throws SQLException {
         customerApps.setAll(AppointmentDAO.getAppointmentsByCustomer(CustomerDAO.getCustomerID(customerCombo.getSelectionModel().getSelectedItem())));
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd hh:mm a");
 
         apptId.setCellValueFactory(new PropertyValueFactory<>("appointmentId"));
         title.setCellValueFactory(new PropertyValueFactory<>("title"));
